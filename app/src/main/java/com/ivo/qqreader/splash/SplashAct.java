@@ -16,21 +16,17 @@ public class SplashAct extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        delayToMain();
-    }
-
-    private void delayToMain() {
-        long delaySeconds = 2;
-        Observable.just("delayToMain")
-                .delay(delaySeconds, TimeUnit.SECONDS)
-                .subscribe(o -> navigateToMain());
+        navigateToMain();
     }
 
     private void navigateToMain() {
-        ARouter.getInstance().build(RoutePath.MAIN_ACT).navigation();
-//        Intent intent = new Intent(this, MainAct.class);
-//        startActivity(intent);
-        finish();
+        long delaySeconds = 2;
+        Observable.just("o")
+                .delay(delaySeconds, TimeUnit.SECONDS)
+                .subscribe(o -> {
+                    ARouter.getInstance().build(RoutePath.MAIN).navigation();
+                    finish();
+                });
     }
 
 }

@@ -5,6 +5,6 @@ public class RoutePath {
     private RoutePath() {
     }
 
-    public static final String MAIN_ACT = "/main/act";
+    public static final String MAIN = "/main/act";
 
 }

@@ -5,9 +5,15 @@ no proguard
 
 
 约定：
-XXXAct 代表 XXXActivity，对应的布局为 act_splash
-
+XxxAct 代表 XxxActivity，对应的布局为 act_xxx。
+重复字符串用类，比如 RoutePath。
 
 Splash
 http://www.jianshu.com/p/cd6ef8d3d74d
 
+
+// SplashAct
+交
+用户点击APP，App create，Splash onCreate
+互
+navigateToMain
