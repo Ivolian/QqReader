@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.main.back.DrawerLayoutWatcher;
+import com.ivo.qqreader.main.watcher.BackPressWatcher;
 import com.ivo.qqreader.navigate.RoutePath;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import qiu.niorgai.StatusBarCompat;
 
 @Route(path = RoutePath.MAIN)
@@ -19,26 +20,26 @@ public class MainAct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_main);
+        ButterKnife.bind(this);
         StatusBarCompat.translucentStatusBar(this);
-        drawerLayoutWatcher = new DrawerLayoutWatcher(drawerLayout);
+        addBackPressWatcher();
     }
 
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
 
-    DrawerLayoutWatcher drawerLayoutWatcher;
+    private BackPressWatcher backPressWatcher;
+
+    private void addBackPressWatcher(){
+        backPressWatcher = new BackPressWatcher(drawerLayout);
+    }
 
     @Override
     public void onBackPressed() {
-        if (!drawerLayoutWatcher.onBackPressed()) {
+        if (!backPressWatcher.onBackPressed()) {
             super.onBackPressed();
         }
     }
-//        int drawerGravity = Gravity.START;
-//        if (drawerLayout.isDrawerOpen(drawerGravity)) {
-//            drawerLayout.closeDrawer(drawerGravity);
-//        } else {
-//            super.onBackPressed();
-//        }
+
 
 }

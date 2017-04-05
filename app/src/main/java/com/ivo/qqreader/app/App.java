@@ -3,6 +3,7 @@ package com.ivo.qqreader.app;
 import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.ivo.qqreader.app.dagger.AppComponentProvider;
 
 public class App extends Application {
 
@@ -10,6 +11,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         initARouter();
+        AppComponentProvider.init(this);
     }
 
     private void initARouter() {
