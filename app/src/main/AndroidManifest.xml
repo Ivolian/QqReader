@@ -3,13 +3,12 @@
     package="com.ivo.qqreader">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name=".app.ReaderApp"
+        android:name=".app.QqReaderApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".splash.SplashAct"
@@ -20,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainAct"/>
+        <activity android:name=".MainAct" />
     </application>
 
 </manifest>

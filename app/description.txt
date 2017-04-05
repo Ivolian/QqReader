@@ -1,8 +1,12 @@
-best practice
-
+NO:
 no test
-no actionbar
+no actionbar toolbar
+no proguard
+
+
+约定：
 XXXAct 代表 XXXActivity，对应的布局为 act_splash
+
 
 Splash
 http://www.jianshu.com/p/cd6ef8d3d74d

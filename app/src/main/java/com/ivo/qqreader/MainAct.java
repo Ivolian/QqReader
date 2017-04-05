@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ivo.qqreader.navigate.RoutePath;
 
-@Route(path = RoutePath.MAIN)
+@Route(path = RoutePath.MAIN_ACT)
 public class MainAct extends AppCompatActivity {
 
     @Override
