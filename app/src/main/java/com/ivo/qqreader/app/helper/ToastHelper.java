@@ -8,7 +8,7 @@ import com.sdsmdg.tastytoast.TastyToast;
 import javax.inject.Inject;
 
 @AppScope
-public class ToastHelper {
+public final class ToastHelper {
 
     private final Context context;
 
@@ -17,7 +17,7 @@ public class ToastHelper {
         this.context = context;
     }
 
-    public void show(String msg) {
+    public final void show(String msg) {
         TastyToast.makeText(context, msg, TastyToast.LENGTH_SHORT, TastyToast.ERROR);
     }
 

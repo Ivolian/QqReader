@@ -12,10 +12,6 @@ import me.yokeyword.fragmentation.SupportFragment;
 
 public class SidebarFra extends SupportFragment {
 
-    public static SidebarFra newInstance() {
-        return new SidebarFra();
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -24,7 +24,7 @@ public class SplashAct extends AppCompatActivity {
         Observable.just("o")
                 .delay(delaySeconds, TimeUnit.SECONDS)
                 .subscribe(o -> {
-                    ARouter.getInstance().build(RoutePath.MAIN).navigation();
+                    ARouter.getInstance().build(RoutePath.MAIN_ACT).navigation();
                     finish();
                 });
     }

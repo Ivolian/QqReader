@@ -1,12 +1,14 @@
 package com.ivo.qqreader.main;
 
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ivo.qqreader.R;
+import com.ivo.qqreader.main.adapter.MainPagerAdapter;
 import com.ivo.qqreader.main.watcher.BackPressWatcher;
 import com.ivo.qqreader.navigate.RoutePath;
 import com.ivo.qqreader.sidebar.SidebarFra;
@@ -21,39 +23,77 @@ import me.majiajie.pagerbottomtabstrip.item.NormalItemView;
 import me.yokeyword.fragmentation.SupportActivity;
 import qiu.niorgai.StatusBarCompat;
 
-@Route(path = RoutePath.MAIN)
+@Route(path = RoutePath.MAIN_ACT)
 public class MainAct extends SupportActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_main);
         StatusBarCompat.translucentStatusBar(this);
+        setContentView(R.layout.act_main);
         ButterKnife.bind(this);
+        initDrawerLayout();
+        if (savedInstanceState == null) {
+            addSidebarFra();
+        }
+        initViewPager();
+        initMainTab();
         addBackPressWatcher();
-        addSidebar();
-        k();
-        s();
-        t();
-    }
-
-    private void t() {
-        drawerLayout.setDrawerShadow(R.drawable.sidebar_shadow, Gravity.LEFT);
-    }
-
-    private void addSidebar() {
-        loadRootFragment(R.id.sidebar_container, SidebarFra.newInstance());
     }
 
     @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
+
+    private void initDrawerLayout() {
+        drawerLayout.setDrawerShadow(R.drawable.sidebar_shadow, Gravity.START);
+    }
+
+    private void addSidebarFra() {
+        loadRootFragment(R.id.sidebar_container, new SidebarFra());
+    }
+
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+
+    private void initViewPager() {
+        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(mainPagerAdapter);
+    }
+
+    @BindView(R.id.mainTab)
+    PageBottomTabLayout mainTab;
+
+    private void initMainTab() {
+        NavigationController navigationController = mainTab.custom()
+                .addItem(newItem(R.drawable.maintab_bookstand_icon, R.drawable.maintab_bookstand_icon_hover, "书架"))
+                .addItem(newItem(R.drawable.maintab_city_icon, R.drawable.maintab_city_icon_hover, "精选"))
+                .addItem(newItem(R.drawable.maintab_stack_icon, R.drawable.maintab_stack_icon_press, "书城"))
+                .addItem(newItem(R.drawable.maintab_category_icon, R.drawable.maintab_category_icon_hover, "发现"))
+                .build();
+        navigationController.setupWithViewPager(viewPager);
+        navigationController.setSelect(0);
+        navigationController.setHasMessage(3, true);
+    }
+
+    @BindColor(R.color.colorPrimary)
+    int colorPrimary;
+
+    @BindColor(R.color.md_grey_500)
+    int mdGrey400;
+
+    private BaseTabItem newItem(@DrawableRes int drawableRes, @DrawableRes int checkedDrawableRes, String title) {
+        NormalItemView normalItemView = new NormalItemView(this);
+        normalItemView.initialize(drawableRes, checkedDrawableRes, title);
+        normalItemView.setTextDefaultColor(mdGrey400);
+        normalItemView.setTextCheckedColor(colorPrimary);
+        return normalItemView;
+    }
 
     private BackPressWatcher backPressWatcher;
 
     private void addBackPressWatcher() {
         backPressWatcher = new BackPressWatcher(drawerLayout);
     }
-
 
     @Override
     public void onBackPressedSupport() {
@@ -62,41 +102,4 @@ public class MainAct extends SupportActivity {
         }
     }
 
-    @BindView(R.id.pageBottomTabLayout)
-    PageBottomTabLayout pageBottomTabLayout;
-
-    private void s() {
-        NavigationController navigationController = pageBottomTabLayout.custom()
-                .addItem(newItem(R.drawable.maintab_bookstand_icon, R.drawable.maintab_bookstand_icon_hover, "书架"))
-                .addItem(newItem(R.drawable.maintab_city_icon, R.drawable.maintab_city_icon_hover, "精选"))
-                .addItem(newItem(R.drawable.maintab_stack_icon, R.drawable.maintab_stack_icon_press, "书城"))
-                .addItem(newItem(R.drawable.maintab_category_icon, R.drawable.maintab_category_icon_hover, "发现"))
-                .build();
-        navigationController.setSelect(0);
-        navigationController.setHasMessage(3, true);
-        navigationController.setupWithViewPager(viewPager);
-    }
-
-    @BindColor(R.color.colorPrimary)
-    int colorPrimary;
-
-    @BindColor(R.color.md_grey_400)
-    int md_grey_400;
-
-    private BaseTabItem newItem(int drawable, int checkedDrawable, String text) {
-        NormalItemView normalItemView = new NormalItemView(this);
-        normalItemView.initialize(drawable, checkedDrawable, text);
-        normalItemView.setTextDefaultColor(md_grey_400);
-        normalItemView.setTextCheckedColor(colorPrimary);
-        return normalItemView;
-    }
-
-    @BindView(R.id.viewPager)
-    ViewPager viewPager;
-
-    public void k() {
-        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(mainPagerAdapter);
-
-    }
 }

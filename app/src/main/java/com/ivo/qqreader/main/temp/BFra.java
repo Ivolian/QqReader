@@ -1,4 +1,4 @@
-package com.ivo.qqreader.main;
+package com.ivo.qqreader.main.temp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
