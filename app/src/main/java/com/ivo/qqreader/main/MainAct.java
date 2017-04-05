@@ -1,7 +1,9 @@
 package com.ivo.qqreader.main;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ivo.qqreader.R;
@@ -30,7 +32,13 @@ public class MainAct extends SupportActivity {
         ButterKnife.bind(this);
         addBackPressWatcher();
         addSidebar();
+        k();
         s();
+        t();
+    }
+
+    private void t() {
+        drawerLayout.setDrawerShadow(R.drawable.sidebar_shadow, Gravity.LEFT);
     }
 
     private void addSidebar() {
@@ -63,9 +71,10 @@ public class MainAct extends SupportActivity {
                 .addItem(newItem(R.drawable.maintab_city_icon, R.drawable.maintab_city_icon_hover, "精选"))
                 .addItem(newItem(R.drawable.maintab_stack_icon, R.drawable.maintab_stack_icon_press, "书城"))
                 .addItem(newItem(R.drawable.maintab_category_icon, R.drawable.maintab_category_icon_hover, "发现"))
-                        .build();
+                .build();
         navigationController.setSelect(0);
-        navigationController.setHasMessage(3,true);
+        navigationController.setHasMessage(3, true);
+        navigationController.setupWithViewPager(viewPager);
     }
 
     @BindColor(R.color.colorPrimary)
@@ -82,5 +91,12 @@ public class MainAct extends SupportActivity {
         return normalItemView;
     }
 
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
 
+    public void k() {
+        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(mainPagerAdapter);
+
+    }
 }
