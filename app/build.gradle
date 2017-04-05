@@ -52,7 +52,7 @@ dependencies {
     compile 'com.google.dagger:dagger:2.10'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
     compile 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
-
+    compile 'me.yokeyword:fragmentation:0.10.2'
 //        compile 'com.github.bumptech.glide:glide:3.7.0'
     //    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

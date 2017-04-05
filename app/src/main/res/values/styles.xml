@@ -7,6 +7,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- for main -->
+    <style name="MainAct" parent="AppTheme">
+        <item name="colorPrimaryDark">@color/md_white</item>
+    </style>
+
     <style name="Splash" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash</item>
