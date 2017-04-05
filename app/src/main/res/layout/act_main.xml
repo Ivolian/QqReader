@@ -5,9 +5,39 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/main_tab_shadow" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/md_grey_200" />
+
+            <me.majiajie.pagerbottomtabstrip.PageBottomTabLayout
+                android:id="@+id/pageBottomTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottomTabHeight" />
+
+        </LinearLayout>
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/sidebar_container"
