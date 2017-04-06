@@ -1,10 +1,6 @@
 package com.ivo.qqreader.sidebar;
 
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.StateListDrawable;
-import android.support.v4.content.ContextCompat;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -24,27 +20,16 @@ public class SidebarAdapter extends BaseQuickAdapter<SidebarItem, BaseViewHolder
         AppComponentProvider.provide().inject(this);
     }
 
+    @Inject
+    SidebarHelper sidebarHelper;
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         BaseViewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
         if (isItemView(viewType)) {
-            initItemBg(viewHolder.getView(R.id.llItem));
+            sidebarHelper.initItemOrHeaderBg(viewHolder.getView(R.id.llItem));
         }
         return viewHolder;
-    }
-
-    private void initItemBg(LinearLayout llItem) {
-        ColorDrawable unpressed = new ColorDrawable();
-        unpressed.setColor(ContextCompat.getColor(mContext, R.color.sideBarItemBg));
-        ColorDrawable pressed = new ColorDrawable();
-        pressed.setColor(ContextCompat.getColor(mContext, android.R.color.transparent));
-
-        StateListDrawable bg = new StateListDrawable();
-        bg.addState(new int[]{android.R.attr.state_pressed}, pressed);
-        bg.addState(new int[]{-android.R.attr.state_pressed}, unpressed);
-
-        llItem.setBackground(bg);
-        llItem.setClickable(true);
     }
 
     private boolean isItemView(int viewType) {

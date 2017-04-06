@@ -39,7 +39,7 @@ public class BackPressWatcher {
         final long interval = 2000;
         String msg = "再按一次退出";
         if ((System.currentTimeMillis() - lastTime) > interval) {
-            toastHelper.show(msg);
+            toastHelper.error(msg);
             lastTime = System.currentTimeMillis();
             return true;
         }
