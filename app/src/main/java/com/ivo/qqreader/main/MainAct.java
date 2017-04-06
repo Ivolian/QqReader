@@ -53,7 +53,7 @@ public class MainAct extends SupportActivity {
         try {
             changeSensitivity();
         } catch (Exception e) {
-            e.printStackTrace();
+            // do nothing
         }
     }
 

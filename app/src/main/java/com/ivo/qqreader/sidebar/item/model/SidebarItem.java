@@ -15,16 +15,8 @@ public class SidebarItem {
         return icon;
     }
 
-    public void setIcon(Integer icon) {
-        this.icon = icon;
-    }
-
     public String getText() {
         return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
 }

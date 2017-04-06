@@ -2,7 +2,7 @@ NO:
 no test
 no actionbar toolbar
 no proguard
-
+http://android.reader.qq.com/v6_3_9/nativepage/infostream/list?periods=2017040521&realdata=1&sex=1&case=A
 
 约定：
 XxxAct 代表 XxxActivity，对应的布局为 act_xxx。

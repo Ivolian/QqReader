@@ -4,7 +4,7 @@ import android.app.Application;
 
 import dagger.internal.Preconditions;
 
-public  class AppComponentProvider {
+public class AppComponentProvider {
 
     private AppComponentProvider() {
     }
