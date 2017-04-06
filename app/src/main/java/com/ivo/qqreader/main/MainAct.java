@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.ViewDragHelper;
 import android.view.Gravity;
+import android.view.ViewConfiguration;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ivo.qqreader.R;
@@ -12,6 +14,8 @@ import com.ivo.qqreader.main.adapter.MainPagerAdapter;
 import com.ivo.qqreader.main.watcher.BackPressWatcher;
 import com.ivo.qqreader.navigate.RoutePath;
 import com.ivo.qqreader.sidebar.SidebarFra;
+
+import java.lang.reflect.Field;
 
 import butterknife.BindColor;
 import butterknife.BindView;
@@ -46,6 +50,24 @@ public class MainAct extends SupportActivity {
 
     private void initDrawerLayout() {
         drawerLayout.setDrawerShadow(R.drawable.sidebar_shadow, Gravity.START);
+        try {
+            changeSensitivity();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void changeSensitivity() throws Exception {
+        Field field = drawerLayout.getClass().getDeclaredField("mLeftDragger");
+        field.setAccessible(true);
+        ViewDragHelper viewDragHelper = (ViewDragHelper) field.get(drawerLayout);
+
+        field = viewDragHelper.getClass().getDeclaredField("mTouchSlop");
+        field.setAccessible(true);
+
+        int touchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
+        touchSlop = (int) (touchSlop * (1 / 0.5));
+        field.set(viewDragHelper, touchSlop);
     }
 
     private void addSidebarFra() {

@@ -30,7 +30,7 @@ public class ToastHelper {
     }
 
     public void wontDevelop(String name) {
-        info(name + "尚未开发");
+        info(name + "将不会开发");
     }
 
     public void mayByDevelop(String name) {

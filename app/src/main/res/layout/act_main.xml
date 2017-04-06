@@ -22,7 +22,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="3dp"
                 android:background="@drawable/main_tab_shadow" />
 
             <View
@@ -33,7 +33,8 @@
             <me.majiajie.pagerbottomtabstrip.PageBottomTabLayout
                 android:id="@+id/mainTab"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/bottomTabHeight" />
+                android:layout_height="@dimen/bottomTabHeight"
+                android:background="@color/md_white" />
 
         </LinearLayout>
 

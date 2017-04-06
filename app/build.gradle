@@ -52,10 +52,14 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
     compile 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
     compile 'me.yokeyword:fragmentation:0.10.2'
-    compile('me.majiajie:pager-bottom-tab-strip:2.1.0', {
-        exclude group: 'com.android.support'
-    })
+//    compile('me.majiajie:pager-bottom-tab-strip:2.1.0', {
+//        exclude group: 'com.android.support'
+//    })
     compile 'com.jude:swipebackhelper:3.1.2'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.4'
+    compile(name: 'pager-bottom-tab-strip', ext: 'aar', {
+        exclude group: 'com.android.support'
+    })
+
 }
