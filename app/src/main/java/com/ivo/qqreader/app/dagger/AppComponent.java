@@ -1,6 +1,7 @@
 package com.ivo.qqreader.app.dagger;
 
 import com.ivo.qqreader.main.watcher.BackPressWatcher;
+import com.ivo.qqreader.sidebar.SidebarDecoration;
 
 import dagger.Component;
 
@@ -9,5 +10,6 @@ import dagger.Component;
 public interface AppComponent {
 
     void  inject(BackPressWatcher o);
+    void  inject(SidebarDecoration o);
 
 }

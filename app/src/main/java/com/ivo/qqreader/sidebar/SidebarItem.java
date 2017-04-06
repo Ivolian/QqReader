@@ -2,12 +2,16 @@ package com.ivo.qqreader.sidebar;
 
 public class SidebarItem {
 
-    private int drawableRes;
+    private Integer drawableRes;
 
     private String text;
 
-    public int getDrawableRes() {
+    public Integer getDrawableRes() {
         return drawableRes;
+    }
+
+    public SidebarItem(String text) {
+        this.text = text;
     }
 
     public void setDrawableRes(int drawableRes) {

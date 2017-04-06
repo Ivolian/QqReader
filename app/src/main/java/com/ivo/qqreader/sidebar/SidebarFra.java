@@ -45,11 +45,11 @@ public class SidebarFra extends SupportFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         SidebarAdapter sidebarAdapter = new SidebarAdapter();
 
-        View view =  getActivity().getLayoutInflater().inflate(R.layout.header_sidebar, (ViewGroup) recyclerView.getParent(), false);
-//        View headerView = getActivity().getLayoutInflater().inflate(R.layout.header_sidebar, recyclerView);
+        View view = getActivity().getLayoutInflater().inflate(R.layout.header_sidebar, (ViewGroup) recyclerView.getParent(), false);
 
         sidebarAdapter.addHeaderView(view);
         recyclerView.setAdapter(sidebarAdapter);
+        recyclerView.addItemDecoration(new SidebarDecoration());
 
     }
 

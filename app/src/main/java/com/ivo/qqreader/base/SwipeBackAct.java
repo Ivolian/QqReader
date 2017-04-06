@@ -6,7 +6,7 @@ import com.jude.swipbackhelper.SwipeBackHelper;
 
 import me.yokeyword.fragmentation.SupportActivity;
 
-public class SwipeBackAct extends SupportActivity {
+public abstract class SwipeBackAct extends SupportActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
