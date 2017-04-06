@@ -2,7 +2,10 @@
   <dictionary name="ivolianer">
     <words>
       <w>bumptech</w>
+      <w>github</w>
+      <w>jakewharton</w>
       <w>qqreader</w>
+      <w>rxbinding</w>
     </words>
   </dictionary>
 </component>
