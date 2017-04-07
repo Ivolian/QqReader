@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookStack.category;
+package com.ivo.qqreader.bookStack.category.renderer;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppScope;
+import com.ivo.qqreader.bookStack.category.BookCategoryResponse;
 import com.klinker.android.link_builder.Link;
 import com.klinker.android.link_builder.LinkBuilder;
 

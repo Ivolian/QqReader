@@ -5,6 +5,8 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
+import com.ivo.qqreader.bookStack.category.renderer.CountRenderer;
+import com.ivo.qqreader.bookStack.category.renderer.RecmdRenderer;
 
 import java.util.List;
 
@@ -25,15 +27,20 @@ public class BookCategoryAdapter extends BaseMultiItemQuickAdapter<MultiItemEnti
     @Inject
     CountRenderer countRenderer;
 
+    @Inject
+    RecmdRenderer recmdRenderer;
+
     @Override
     protected void convert(BaseViewHolder viewHolder, MultiItemEntity item) {
         switch (viewHolder.getItemViewType()) {
             case ItemType.COUNT:
                 countRenderer.render(viewHolder, item);
                 break;
+            case ItemType.RECMD:
+                recmdRenderer.render(viewHolder, item);
+                break;
         }
     }
-
 
 
 }

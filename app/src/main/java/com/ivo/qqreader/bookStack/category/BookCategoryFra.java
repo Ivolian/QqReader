@@ -2,7 +2,7 @@ package com.ivo.qqreader.bookStack.category;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
@@ -11,6 +11,7 @@ import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.base.BaseFra;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,12 +45,20 @@ public class BookCategoryFra extends BaseFra {
     protected void init() {
         AppComponentProvider.provide().inject(this);
         initRecycleView();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                s();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     BookCategoryAdapter bookCategoryAdapter;
 
     private void initRecycleView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
 
         List<MultiItemEntity> list = new ArrayList<>();
 
@@ -57,7 +66,8 @@ public class BookCategoryFra extends BaseFra {
 
 
         recyclerView.setAdapter(bookCategoryAdapter);
-
+    recyclerView.addItemDecoration(new ItemDecoration());
+        bookCategoryAdapter.setSpanSizeLookup((gridLayoutManager, position) -> Arrays.asList(1, 2, 3, 4).contains(position) ? 1 : 2);
 
         s();
     }

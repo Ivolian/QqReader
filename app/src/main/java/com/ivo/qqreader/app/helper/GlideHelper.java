@@ -21,4 +21,8 @@ public class GlideHelper {
         Glide.with(context).load(drawableRes).crossFade().into(target);
     }
 
+    public void loadImg(String imgUrl, ImageView target) {
+        Glide.with(context).load(imgUrl).crossFade().into(target);
+    }
+
 }
