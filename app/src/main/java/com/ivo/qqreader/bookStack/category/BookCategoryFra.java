@@ -46,32 +46,26 @@ public class BookCategoryFra extends BaseFra {
         initRecycleView();
     }
 
+    BookCategoryAdapter bookCategoryAdapter;
+
     private void initRecycleView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         List<MultiItemEntity> list = new ArrayList<>();
-        list.add(new Type1());
-        list.add(new Type2());
-        list.add(new Type1());
-        list.add(new Type2());
-        list.add(new Type2());
-        list.add(new Type2());
 
-        MultipleItemQuickAdapter bookCategoryAdapter = new MultipleItemQuickAdapter(list);
+        bookCategoryAdapter = new BookCategoryAdapter(list);
 
 
         recyclerView.setAdapter(bookCategoryAdapter);
 
-//        SideItemProvider sideItemProvider = new SideItemProvider();
-//        bookCategoryAdapter.(sideItemProvider.provide());
-//        setOnItemClickListener(sidebarAdapter);
-    s();
+
+        s();
     }
 
     @Inject
     Retrofit retrofit;
 
-    private void s(){
+    private void s() {
         BookCategoryService bookCategoryService = retrofit.create(BookCategoryService.class);
         bookCategoryService.queryOperation(1)
                 .subscribeOn(Schedulers.io())
@@ -89,8 +83,13 @@ public class BookCategoryFra extends BaseFra {
 
                     @Override
                     public void onNext(BookCategoryResponse bookCategoryService) {
-
-                        retrofit.baseUrl();
+                        List<MultiItemEntity> list = new ArrayList<>();
+                        list.add(bookCategoryService.getCount());
+                        list.addAll(bookCategoryService.getRecmd());
+                        list.addAll(bookCategoryService.getBoyCategoryList());
+                        list.add(bookCategoryService.getLine());
+                        list.addAll(bookCategoryService.getGirlCategoryList());
+                        bookCategoryAdapter.setNewData(list);
                     }
                 });
     }

@@ -1,5 +1,7 @@
 package com.ivo.qqreader.bookStack.category;
 
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+
 import java.util.List;
 
 public class BookCategoryResponse {
@@ -28,9 +30,9 @@ public class BookCategoryResponse {
 
     private int qq;
     private String code;
-    private LineBean line;
+    private Line line;
     private Object openId;
-    private CountBean count;
+    private Count count;
     private String channel;
     private String jzweekstr;
     private TopicinfoBean topicinfo;
@@ -40,10 +42,10 @@ public class BookCategoryResponse {
     private boolean isLogin;
     private int expireTime;
     private String signal;
-    private List<BoyCategoryListBean> boyCategoryList;
+    private List<BoyCategory> boyCategoryList;
     private List<Ads2Bean> ads2;
     private List<GirlCategoryListBean> girlCategoryList;
-    private List<RecmdBean> recmd;
+    private List<Recmd> recmd;
 
     public int getQq() {
         return qq;
@@ -61,11 +63,11 @@ public class BookCategoryResponse {
         this.code = code;
     }
 
-    public LineBean getLine() {
+    public Line getLine() {
         return line;
     }
 
-    public void setLine(LineBean line) {
+    public void setLine(Line line) {
         this.line = line;
     }
 
@@ -77,11 +79,11 @@ public class BookCategoryResponse {
         this.openId = openId;
     }
 
-    public CountBean getCount() {
+    public Count getCount() {
         return count;
     }
 
-    public void setCount(CountBean count) {
+    public void setCount(Count count) {
         this.count = count;
     }
 
@@ -157,11 +159,11 @@ public class BookCategoryResponse {
         this.signal = signal;
     }
 
-    public List<BoyCategoryListBean> getBoyCategoryList() {
+    public List<BoyCategory> getBoyCategoryList() {
         return boyCategoryList;
     }
 
-    public void setBoyCategoryList(List<BoyCategoryListBean> boyCategoryList) {
+    public void setBoyCategoryList(List<BoyCategory> boyCategoryList) {
         this.boyCategoryList = boyCategoryList;
     }
 
@@ -181,15 +183,21 @@ public class BookCategoryResponse {
         this.girlCategoryList = girlCategoryList;
     }
 
-    public List<RecmdBean> getRecmd() {
+    public List<Recmd> getRecmd() {
         return recmd;
     }
 
-    public void setRecmd(List<RecmdBean> recmd) {
+    public void setRecmd(List<Recmd> recmd) {
         this.recmd = recmd;
     }
 
-    public static class LineBean {
+    public static class Line implements MultiItemEntity {
+
+        @Override
+        public int getItemType() {
+            return ItemType.LINE;
+        }
+
         /**
          * title : 以下分类推荐女生阅读
          */
@@ -205,7 +213,12 @@ public class BookCategoryResponse {
         }
     }
 
-    public static class CountBean {
+    public static class Count implements MultiItemEntity {
+        @Override
+        public int getItemType() {
+            return ItemType.COUNT;
+        }
+
         /**
          * bookCount : 991373
          * categoryFlag : 1
@@ -269,7 +282,12 @@ public class BookCategoryResponse {
         }
     }
 
-    public static class BoyCategoryListBean {
+    public static class BoyCategory implements MultiItemEntity {
+        @Override
+        public int getItemType() {
+            return ItemType.BOY_CATEGORY;
+        }
+
         /**
          * img : http://wfqqreader.3g.qq.com/cover/view_data/view_data_1430902409028.jpg
          * level3categoryName : 东方玄幻/异世大陆/王朝争霸/高武世界
@@ -737,7 +755,12 @@ public class BookCategoryResponse {
         }
     }
 
-    public static class GirlCategoryListBean {
+    public static class GirlCategoryListBean implements MultiItemEntity{
+        @Override
+        public int getItemType() {
+            return ItemType.GIRL_CATEGORY;
+        }
+
         /**
          * img : http://wfqqreader.3g.qq.com/cover/view_data/view_data_1430902577322.jpg
          * level3categoryName : 穿越奇情/古典架空/经商种田/女尊王朝/古代情缘/宫闱宅斗
@@ -747,6 +770,8 @@ public class BookCategoryResponse {
          * recommend : false
          * categoryName : 古代言情
          */
+
+
 
         private String img;
         private String level3categoryName;
@@ -813,7 +838,13 @@ public class BookCategoryResponse {
         }
     }
 
-    public static class RecmdBean {
+    public static class Recmd implements MultiItemEntity {
+
+        @Override
+        public int getItemType() {
+            return ItemType.RECMD;
+        }
+
         /**
          * image : http://wfqqreader.3g.qq.com/cover/topic/newad_69904078_1490088182584.png
          * intro : 这年头，闷声发财才是王道！
@@ -821,6 +852,7 @@ public class BookCategoryResponse {
          * type : 3
          * title : 扮猪吃虎
          */
+
 
         private String image;
         private String intro;
