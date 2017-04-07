@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="@color/md_green_200">
-
-</LinearLayout>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvCount"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:drawableLeft="@drawable/localstore_icon_21"
+    android:drawablePadding="8dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="16dp"
+    android:text="原创分类公131313"
+    android:textColor="@color/md_grey_500" />
