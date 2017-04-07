@@ -30,4 +30,9 @@ public class BookStackPagerAdapter extends FragmentPagerAdapter {
         return 2;
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return position == 0 ? "出版图书" : "原创文学";
+    }
+
 }

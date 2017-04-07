@@ -9,6 +9,7 @@ import com.ivo.qqreader.bookStack.ui.HorseTabLayout;
 
 import butterknife.BindView;
 
+//http://android.reader.qq.com/v6_3_9/queryOperation?categoryFlag=1
 public class BookStackFra extends BaseFra {
 
     @Override
@@ -30,7 +31,7 @@ public class BookStackFra extends BaseFra {
     private void initViewPager() {
         BookStackPagerAdapter adapter = new BookStackPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
-        horseTabLayout.setViewPager(viewPager);
+        horseTabLayout.setUpViewPager(viewPager);
     }
 
 }
