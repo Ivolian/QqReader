@@ -16,7 +16,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import retrofit2.Retrofit;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
+// http://android.reader.qq.com/v6_3_9/queryOperation?categoryFlag=1
 public class BookCategoryFra extends BaseFra {
 
     @Override
@@ -60,7 +65,34 @@ public class BookCategoryFra extends BaseFra {
 //        SideItemProvider sideItemProvider = new SideItemProvider();
 //        bookCategoryAdapter.(sideItemProvider.provide());
 //        setOnItemClickListener(sidebarAdapter);
+    s();
     }
 
+    @Inject
+    Retrofit retrofit;
+
+    private void s(){
+        BookCategoryService bookCategoryService = retrofit.create(BookCategoryService.class);
+        bookCategoryService.queryOperation(1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<BookCategoryResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(BookCategoryResponse bookCategoryService) {
+
+                        retrofit.baseUrl();
+                    }
+                });
+    }
 
 }
