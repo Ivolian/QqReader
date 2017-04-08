@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppScope;
-import com.ivo.qqreader.bookStack.category.BookCategoryResponse;
+import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse1;
 import com.klinker.android.link_builder.Link;
 import com.klinker.android.link_builder.LinkBuilder;
 
@@ -26,7 +26,7 @@ public class CountRenderer {
 
     public void render(BaseViewHolder viewHolder, MultiItemEntity item) {
         TextView tvCount = viewHolder.getView(R.id.tvCount);
-        BookCategoryResponse.Count count = (BookCategoryResponse.Count) item;
+        BookCategoryResponse1.Count count = (BookCategoryResponse1.Count) item;
 
         String bookCount = count.getBookCount() + "";
         String newBookCount = count.getNewBookCount() + "";

@@ -1,6 +1,7 @@
-package com.ivo.qqreader.bookStack.category;
+package com.ivo.qqreader.bookStack.category.response;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.ivo.qqreader.bookStack.category.ItemType;
 
 import java.util.List;
 
@@ -28,6 +29,42 @@ public class BookCategoryResponse {
      * signal : UNKNOWN
      */
 
+    private List<Category> boyCategoryList;
+    private List<Category> girlCategoryList;
+    private List<Category> publishCategoryList;
+
+    public List<Category> getBoyCategoryList() {
+        return boyCategoryList;
+    }
+
+    public void setBoyCategoryList(List<Category> boyCategoryList) {
+        this.boyCategoryList = boyCategoryList;
+    }
+
+    public List<Category> getGirlCategoryList() {
+        return girlCategoryList;
+    }
+
+    public void setGirlCategoryList(List<Category> girlCategoryList) {
+        this.girlCategoryList = girlCategoryList;
+    }
+
+    public List<Category> getPublishCategoryList() {
+        return publishCategoryList;
+    }
+
+    public void setPublishCategoryList(List<Category> publishCategoryList) {
+        this.publishCategoryList = publishCategoryList;
+    }
+
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
+    }
+
     private int qq;
     private String code;
     private Line line;
@@ -42,9 +79,7 @@ public class BookCategoryResponse {
     private boolean isLogin;
     private int expireTime;
     private String signal;
-    private List<BoyCategory> boyCategoryList;
     private List<Ads2Bean> ads2;
-    private List<GirlCategoryListBean> girlCategoryList;
     private List<Recmd> recmd;
 
     public int getQq() {
@@ -159,28 +194,12 @@ public class BookCategoryResponse {
         this.signal = signal;
     }
 
-    public List<BoyCategory> getBoyCategoryList() {
-        return boyCategoryList;
-    }
-
-    public void setBoyCategoryList(List<BoyCategory> boyCategoryList) {
-        this.boyCategoryList = boyCategoryList;
-    }
-
     public List<Ads2Bean> getAds2() {
         return ads2;
     }
 
     public void setAds2(List<Ads2Bean> ads2) {
         this.ads2 = ads2;
-    }
-
-    public List<GirlCategoryListBean> getGirlCategoryList() {
-        return girlCategoryList;
-    }
-
-    public void setGirlCategoryList(List<GirlCategoryListBean> girlCategoryList) {
-        this.girlCategoryList = girlCategoryList;
     }
 
     public List<Recmd> getRecmd() {
@@ -282,10 +301,10 @@ public class BookCategoryResponse {
         }
     }
 
-    public static class BoyCategory implements MultiItemEntity {
+    public static class Category implements MultiItemEntity {
         @Override
         public int getItemType() {
-            return ItemType.BOY_CATEGORY;
+            return ItemType.CATEGORY;
         }
 
         /**
@@ -752,89 +771,6 @@ public class BookCategoryResponse {
             public void setCategory(String category) {
                 this.category = category;
             }
-        }
-    }
-
-    public static class GirlCategoryListBean implements MultiItemEntity{
-        @Override
-        public int getItemType() {
-            return ItemType.GIRL_CATEGORY;
-        }
-
-        /**
-         * img : http://wfqqreader.3g.qq.com/cover/view_data/view_data_1430902577322.jpg
-         * level3categoryName : 穿越奇情/古典架空/经商种田/女尊王朝/古代情缘/宫闱宅斗
-         * bookCount : 106085
-         * bids : 14811330,14567582,14611079,11758803,185422,15038667
-         * actionId : 30013
-         * recommend : false
-         * categoryName : 古代言情
-         */
-
-
-
-        private String img;
-        private String level3categoryName;
-        private int bookCount;
-        private String bids;
-        private int actionId;
-        private boolean recommend;
-        private String categoryName;
-
-        public String getImg() {
-            return img;
-        }
-
-        public void setImg(String img) {
-            this.img = img;
-        }
-
-        public String getLevel3categoryName() {
-            return level3categoryName;
-        }
-
-        public void setLevel3categoryName(String level3categoryName) {
-            this.level3categoryName = level3categoryName;
-        }
-
-        public int getBookCount() {
-            return bookCount;
-        }
-
-        public void setBookCount(int bookCount) {
-            this.bookCount = bookCount;
-        }
-
-        public String getBids() {
-            return bids;
-        }
-
-        public void setBids(String bids) {
-            this.bids = bids;
-        }
-
-        public int getActionId() {
-            return actionId;
-        }
-
-        public void setActionId(int actionId) {
-            this.actionId = actionId;
-        }
-
-        public boolean isRecommend() {
-            return recommend;
-        }
-
-        public void setRecommend(boolean recommend) {
-            this.recommend = recommend;
-        }
-
-        public String getCategoryName() {
-            return categoryName;
-        }
-
-        public void setCategoryName(String categoryName) {
-            this.categoryName = categoryName;
         }
     }
 

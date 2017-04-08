@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppScope;
 import com.ivo.qqreader.app.helper.GlideHelper;
-import com.ivo.qqreader.bookStack.category.BookCategoryResponse;
+import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse1;
 
 import javax.inject.Inject;
 
@@ -27,7 +27,7 @@ public class RecmdRenderer {
 
     public void render(BaseViewHolder viewHolder, MultiItemEntity item) {
         ImageView ivImg = viewHolder.getView(R.id.ivImg);
-        BookCategoryResponse.Recmd recmd = (BookCategoryResponse.Recmd) item;
+        BookCategoryResponse1.Recmd recmd = (BookCategoryResponse1.Recmd) item;
         viewHolder.setText(R.id.tvIntro,recmd.getIntro());
         viewHolder.setText(R.id.tvTitle,recmd.getTitle());
         glideHelper.loadImg(recmd.getImage(),ivImg);

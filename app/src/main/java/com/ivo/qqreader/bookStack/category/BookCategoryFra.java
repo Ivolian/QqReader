@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.base.BaseFra;
+import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +24,9 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 // http://android.reader.qq.com/v6_3_9/queryOperation?categoryFlag=1
-public class BookCategoryFra extends BaseFra {
+public abstract class BookCategoryFra extends BaseFra {
+
+    abstract int  categoryFlag();
 
     @Override
     protected int layoutResId() {
@@ -46,12 +49,9 @@ public class BookCategoryFra extends BaseFra {
         AppComponentProvider.provide().inject(this);
         initRecycleView();
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                s();
-                swipeRefreshLayout.setRefreshing(false);
-            }
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            s();
+            swipeRefreshLayout.setRefreshing(false);
         });
     }
 
@@ -75,9 +75,9 @@ public class BookCategoryFra extends BaseFra {
     @Inject
     Retrofit retrofit;
 
-    private void s() {
+    private void s(){
         BookCategoryService bookCategoryService = retrofit.create(BookCategoryService.class);
-        bookCategoryService.queryOperation(1)
+        bookCategoryService.queryOperation(categoryFlag())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BookCategoryResponse>() {
@@ -88,20 +88,35 @@ public class BookCategoryFra extends BaseFra {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
 
                     @Override
-                    public void onNext(BookCategoryResponse bookCategoryService) {
+                    public void onNext(BookCategoryResponse categoryResponse) {
                         List<MultiItemEntity> list = new ArrayList<>();
-                        list.add(bookCategoryService.getCount());
-                        list.addAll(bookCategoryService.getRecmd());
-                        list.addAll(bookCategoryService.getBoyCategoryList());
-                        list.add(bookCategoryService.getLine());
-                        list.addAll(bookCategoryService.getGirlCategoryList());
+                        if (categoryResponse.getCount()!=null) {
+                            list.add(categoryResponse.getCount());
+                        }
+                        if (categoryResponse.getRecmd()!=null) {
+                            list.addAll(categoryResponse.getRecmd());
+                        }
+
+                        if (categoryResponse.getBoyCategoryList()!=null) {
+                            list.addAll(categoryResponse.getBoyCategoryList());
+                        }
+                        if (categoryResponse.getLine()!=null) {
+                            list.add(categoryResponse.getLine());
+                        }
+                        if (categoryResponse.getGirlCategoryList()!=null) {
+                            list.addAll(categoryResponse.getGirlCategoryList());
+                        }
+                        if (categoryResponse.getPublishCategoryList()!=null) {
+                            list.addAll(categoryResponse.getPublishCategoryList());
+                        }
                         bookCategoryAdapter.setNewData(list);
                     }
                 });
     }
+
 
 }
