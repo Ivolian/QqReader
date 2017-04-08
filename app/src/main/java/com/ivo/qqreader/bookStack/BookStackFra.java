@@ -3,13 +3,16 @@ package com.ivo.qqreader.bookStack;
 import android.support.v4.view.ViewPager;
 
 import com.ivo.qqreader.R;
+import com.ivo.qqreader.app.dagger.AppComponentProvider;
+import com.ivo.qqreader.app.helper.ToastHelper;
 import com.ivo.qqreader.base.BaseFra;
-import com.ivo.qqreader.bookStack.adapter.BookStackPagerAdapter;
-import com.ivo.qqreader.bookStack.ui.HorseTabLayout;
+import com.ivo.qqreader.ui.HorseTabLayout;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-//http://android.reader.qq.com/v6_3_9/queryOperation?categoryFlag=1
 public class BookStackFra extends BaseFra {
 
     @Override
@@ -19,7 +22,8 @@ public class BookStackFra extends BaseFra {
 
     @Override
     protected void init() {
-        initViewPager();
+        AppComponentProvider.provide().inject(this);
+        initViews();
     }
 
     @BindView(R.id.viewPager)
@@ -28,10 +32,18 @@ public class BookStackFra extends BaseFra {
     @BindView(R.id.horseTabLayout)
     HorseTabLayout horseTabLayout;
 
-    private void initViewPager() {
+    private void initViews() {
         BookStackPagerAdapter adapter = new BookStackPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
         horseTabLayout.setUpViewPager(viewPager);
+    }
+
+    @Inject
+    ToastHelper toastHelper;
+
+    @OnClick(R.id.ivSearch)
+    public void searchOnClick() {
+        toastHelper.wontDevelop("查询功能");
     }
 
 }

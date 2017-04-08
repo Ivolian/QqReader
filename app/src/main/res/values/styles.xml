@@ -21,6 +21,8 @@
     </style>
 
     <dimen name="bottomTabHeight">56dp</dimen>
+    <dimen name="statusBarHeight">25dp</dimen>
+    <dimen name="titleBarHeight">75dp</dimen>
 
 
 </resources>

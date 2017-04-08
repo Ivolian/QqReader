@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookStack.ui;
+package com.ivo.qqreader.ui;
 
 import android.animation.ArgbEvaluator;
 import android.content.Context;

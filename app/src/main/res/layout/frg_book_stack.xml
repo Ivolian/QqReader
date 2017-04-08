@@ -6,17 +6,18 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="@dimen/titleBarHeight"
         android:background="@color/colorPrimary"
-        android:paddingTop="25dp">
+        android:paddingTop="@dimen/statusBarHeight">
 
-        <com.ivo.qqreader.bookStack.ui.HorseTabLayout
+        <com.ivo.qqreader.ui.HorseTabLayout
             android:id="@+id/horseTabLayout"
             android:layout_width="192dp"
             android:layout_height="30dp"
             android:layout_gravity="center" />
 
         <ImageView
+            android:id="@+id/ivSearch"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_gravity="right|center_vertical"

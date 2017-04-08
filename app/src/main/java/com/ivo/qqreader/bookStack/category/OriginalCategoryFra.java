@@ -1,9 +1,9 @@
 package com.ivo.qqreader.bookStack.category;
 
-public class BookCategoryFra1 extends BookCategoryFra {
+public class OriginalCategoryFra extends BookCategoryFra {
 
     @Override
     int categoryFlag() {
-        return 1;
+        return 3;
     }
 }

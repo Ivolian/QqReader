@@ -1,9 +1,10 @@
 package com.ivo.qqreader.app.dagger;
 
+import com.ivo.qqreader.bookStack.BookStackFra;
 import com.ivo.qqreader.bookStack.category.BookCategoryAdapter;
 import com.ivo.qqreader.bookStack.category.BookCategoryFra;
 import com.ivo.qqreader.bookStack.category.ItemDecoration;
-import com.ivo.qqreader.bookStack.ui.HorseTabLayout;
+import com.ivo.qqreader.ui.HorseTabLayout;
 import com.ivo.qqreader.main.watcher.BackPressWatcher;
 import com.ivo.qqreader.sidebar.SidebarAdapter;
 import com.ivo.qqreader.sidebar.SidebarDecoration;
@@ -25,5 +26,6 @@ public interface AppComponent {
     void  inject(BookCategoryFra o);
     void  inject(BookCategoryAdapter o);
     void  inject(ItemDecoration o);
+    void  inject(BookStackFra o);
 
 }
