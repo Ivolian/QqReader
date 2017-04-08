@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppScope;
 import com.ivo.qqreader.app.helper.GlideHelper;
-import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse1;
+import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse;
 
 import javax.inject.Inject;
 
@@ -27,15 +27,15 @@ public class RecmdRenderer {
 
     public void render(BaseViewHolder viewHolder, MultiItemEntity item) {
         ImageView ivImg = viewHolder.getView(R.id.ivImg);
-        BookCategoryResponse1.Recmd recmd = (BookCategoryResponse1.Recmd) item;
-        viewHolder.setText(R.id.tvIntro,recmd.getIntro());
-        viewHolder.setText(R.id.tvTitle,recmd.getTitle());
-        glideHelper.loadImg(recmd.getImage(),ivImg);
-        ivImg.setBackgroundColor(ContextCompat.getColor(context,bgColor(viewHolder.getLayoutPosition())));
+        BookCategoryResponse.Recmd recmd = (BookCategoryResponse.Recmd) item;
+        viewHolder.setText(R.id.tvIntro, recmd.getIntro());
+        viewHolder.setText(R.id.tvTitle, recmd.getTitle());
+        ivImg.setBackgroundColor(ContextCompat.getColor(context, imgBgColor(viewHolder.getLayoutPosition())));
+        glideHelper.loadImg(recmd.getImage(), ivImg);
     }
 
-    private int bgColor(int position){
-        switch (position){
+    private int imgBgColor(int position) {
+        switch (position) {
             case 1:
                 return R.color.md_pink_300;
             case 2:
@@ -44,9 +44,8 @@ public class RecmdRenderer {
                 return R.color.md_yellow_300;
             case 4:
                 return R.color.md_green_300;
-                default:
-                  return   0;
-
+            default:
+                return 0;
         }
     }
 

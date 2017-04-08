@@ -1,8 +1,6 @@
 package com.ivo.qqreader.app;
 
 
-import com.ivo.qqreader.AppConfig;
-
 import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;

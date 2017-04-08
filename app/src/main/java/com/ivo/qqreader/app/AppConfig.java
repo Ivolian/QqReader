@@ -1,4 +1,4 @@
-package com.ivo.qqreader;
+package com.ivo.qqreader.app;
 
 
 public final class AppConfig {

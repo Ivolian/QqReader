@@ -1,7 +1,5 @@
-package com.ivo.qqreader.bookStack.category;
+package com.ivo.qqreader.app;
 
-
-import com.ivo.qqreader.AppConfig;
 
 /**
  * The type Book cover helper.

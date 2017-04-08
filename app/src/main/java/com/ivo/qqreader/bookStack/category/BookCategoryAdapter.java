@@ -18,12 +18,12 @@ public class BookCategoryAdapter extends BaseMultiItemQuickAdapter<MultiItemEnti
 
     public BookCategoryAdapter(List<MultiItemEntity> data) {
         super(data);
+        AppComponentProvider.provide().inject(this);
+
         addItemType(ItemType.COUNT, R.layout.item_count);
         addItemType(ItemType.RECMD, R.layout.item_recmd);
-//        addItemType(ItemType.BOY_CATEGORY, R.layout.item_category);
         addItemType(ItemType.LINE, R.layout.item_line);
         addItemType(ItemType.CATEGORY, R.layout.item_category);
-        AppComponentProvider.provide().inject(this);
     }
 
     @Inject
@@ -35,10 +35,8 @@ public class BookCategoryAdapter extends BaseMultiItemQuickAdapter<MultiItemEnti
     @Inject
     CategoryRenderer categoryRenderer;
 
-
     @Inject
     LineRenderer lineRenderer;
-
 
     @Override
     protected void convert(BaseViewHolder viewHolder, MultiItemEntity item) {
@@ -52,15 +50,10 @@ public class BookCategoryAdapter extends BaseMultiItemQuickAdapter<MultiItemEnti
             case ItemType.CATEGORY:
                 categoryRenderer.render(viewHolder, item);
                 break;
-//            case ItemType.GIRL_CATEGORY:
-//                girlCategoryRenderer.render(viewHolder, item);
-//                break;
             case ItemType.LINE:
                 lineRenderer.render(viewHolder, item);
                 break;
-
         }
     }
-
 
 }

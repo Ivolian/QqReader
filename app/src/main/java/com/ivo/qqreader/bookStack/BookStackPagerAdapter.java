@@ -4,9 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ivo.qqreader.bookStack.category.PublishCategoryFra;
-import com.ivo.qqreader.bookStack.category.OriginalCategoryFra;
-
 import java.util.Arrays;
 import java.util.List;
 

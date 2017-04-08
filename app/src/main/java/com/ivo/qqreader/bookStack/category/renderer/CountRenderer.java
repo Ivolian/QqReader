@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppScope;
-import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse1;
+import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse;
 import com.klinker.android.link_builder.Link;
 import com.klinker.android.link_builder.LinkBuilder;
 
@@ -26,7 +26,7 @@ public class CountRenderer {
 
     public void render(BaseViewHolder viewHolder, MultiItemEntity item) {
         TextView tvCount = viewHolder.getView(R.id.tvCount);
-        BookCategoryResponse1.Count count = (BookCategoryResponse1.Count) item;
+        BookCategoryResponse.Count count = (BookCategoryResponse.Count) item;
 
         String bookCount = count.getBookCount() + "";
         String newBookCount = count.getNewBookCount() + "";
@@ -37,17 +37,17 @@ public class CountRenderer {
     }
 
     private void addLinks(TextView tvCount, String bookCount, String newBookCount) {
-        int linkColor = ContextCompat.getColor(context, R.color.md_red_300);
-        Link link = new Link(bookCount)
-                .setTextColor(linkColor)
-                .setUnderlined(false);
-        Link link2 = new Link(newBookCount)
-                .setTextColor(linkColor)
-                .setUnderlined(false);
         LinkBuilder.on(tvCount)
-                .addLink(link)
-                .addLink(link2)
+                .addLink(createLink(bookCount))
+                .addLink(createLink(newBookCount))
                 .build();
+    }
+
+    private Link createLink(String text) {
+        int linkColor = ContextCompat.getColor(context, R.color.md_red_300);
+        return new Link(text)
+                .setTextColor(linkColor)
+                .setUnderlined(false);
     }
 
 }
