@@ -4,9 +4,11 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.gigamole.library.ShadowLayout;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.BookCoverHelper;
 import com.ivo.qqreader.app.dagger.AppScope;
+import com.ivo.qqreader.app.helper.DensityHelper;
 import com.ivo.qqreader.app.helper.GlideHelper;
 import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse;
 
@@ -17,9 +19,12 @@ public class CategoryRenderer {
 
     private final GlideHelper glideHelper;
 
+    private final DensityHelper densityHelper;
+
     @Inject
-    public CategoryRenderer(GlideHelper glideHelper) {
+    public CategoryRenderer(GlideHelper glideHelper, DensityHelper densityHelper) {
         this.glideHelper = glideHelper;
+        this.densityHelper = densityHelper;
     }
 
     public void render(BaseViewHolder viewHolder, MultiItemEntity item) {
@@ -32,6 +37,8 @@ public class CategoryRenderer {
         String bid = bids[0];
         String imgUrl = BookCoverHelper.coverUrl(bid);
         glideHelper.loadImg(imgUrl, ivBook);
+        ShadowLayout s = viewHolder.getView(R.id.s);
+        s.requestLayout();
         ivBook = viewHolder.getView(R.id.ivBookLeft);
         bid = bids[1];
         imgUrl = BookCoverHelper.coverUrl(bid);
@@ -40,6 +47,9 @@ public class CategoryRenderer {
         bid = bids[2];
         imgUrl = BookCoverHelper.coverUrl(bid);
         glideHelper.loadImg(imgUrl, ivBook);
+
+
     }
+
 
 }

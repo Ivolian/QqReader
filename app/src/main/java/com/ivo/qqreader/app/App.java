@@ -8,6 +8,9 @@ import com.ivo.qqreader.app.dagger.AppComponentProvider;
 
 import me.yokeyword.fragmentation.Fragmentation;
 
+// http://android.reader.qq.com/v6_3_9/nativepage/infostream/list?periods=2017040808&realdata=1&sex=1&case=A
+/// qimei:3910feb22bd16f65
+//channel:10004200
 public class App extends Application {
 
     @Override

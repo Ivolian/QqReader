@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
@@ -22,6 +24,7 @@ import javax.inject.Inject;
 
 import butterknife.BindColor;
 import butterknife.BindView;
+import butterknife.OnClick;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -79,6 +82,7 @@ public abstract class BookCategoryFra extends BaseFra {
     BookService bookService;
 
     private void loadBooks() {
+        hideErrowView();
         bookService.queryOperation(categoryFlag())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -90,7 +94,7 @@ public abstract class BookCategoryFra extends BaseFra {
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
+                        showErrowView();
                     }
 
                     @Override
@@ -121,4 +125,20 @@ public abstract class BookCategoryFra extends BaseFra {
     }
 
 
+    @BindView(R.id.flEmptyView)
+    FrameLayout flEmptyView;
+
+    private void showErrowView(){
+        flEmptyView.setVisibility(View.VISIBLE);
+    }
+
+
+    private void hideErrowView(){
+        flEmptyView.setVisibility(View.INVISIBLE);
+    }
+
+    @OnClick(R.id.tvReload)
+    public void reload(){
+        loadBooks();
+    }
 }
