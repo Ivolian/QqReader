@@ -11,15 +11,4 @@ XxxAct 代表 XxxActivity，对应的布局为 act_xxx。
 Splash
 http://www.jianshu.com/p/cd6ef8d3d74d
 
-
-// SplashAct
-交
-用户点击APP，App create，Splash onCreate
-互
-navigateToMain
-
-// MainAct
-交
-onBackPressed
-互
-BackPressWatcher
+item direc

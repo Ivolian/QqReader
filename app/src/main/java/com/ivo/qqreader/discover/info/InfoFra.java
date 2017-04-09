@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.InfoService;
@@ -18,6 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.BindColor;
 import butterknife.BindView;
+import butterknife.OnClick;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -88,7 +91,6 @@ public abstract class InfoFra extends BaseFra {
     }
 
 
-
     private int pagestamp = 1;
 
     private void loadFirst() {
@@ -101,10 +103,12 @@ public abstract class InfoFra extends BaseFra {
 
             @Override
             public void onError(Throwable e) {
+                showErrorView();
             }
 
             @Override
             public void onNext(InfoResponse infoResponse) {
+                hideErrorView();
                 infoAdapter.setNewData(infos(infoResponse));
                 pagestamp++;
             }
@@ -120,10 +124,12 @@ public abstract class InfoFra extends BaseFra {
 
             @Override
             public void onError(Throwable e) {
+                showErrorView();
             }
 
             @Override
             public void onNext(InfoResponse infoResponse) {
+                hideErrorView();
                 infoAdapter.loadMoreComplete();
                 infoAdapter.addData(infos(infoResponse));
                 pagestamp++;
@@ -138,6 +144,23 @@ public abstract class InfoFra extends BaseFra {
             infos.add(infosBean.getInfo());
         }
         return infos;
+    }
+
+    @BindView(R.id.errorView)
+    FrameLayout errorView;
+
+    private void showErrorView() {
+        errorView.setVisibility(View.VISIBLE);
+    }
+
+    private void hideErrorView() {
+        errorView.setVisibility(View.INVISIBLE);
+    }
+
+    @OnClick(R.id.tvReload)
+    public void reloadOnClick() {
+        swipeRefreshLayout.setRefreshing(true);
+        loadFirst();
     }
 
 }

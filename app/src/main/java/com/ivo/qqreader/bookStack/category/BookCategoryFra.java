@@ -125,7 +125,7 @@ public abstract class BookCategoryFra extends BaseFra {
     }
 
 
-    @BindView(R.id.flEmptyView)
+    @BindView(R.id.errorView)
     FrameLayout flEmptyView;
 
     private void showErrowView(){
