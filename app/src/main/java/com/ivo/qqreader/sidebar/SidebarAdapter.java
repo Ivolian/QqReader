@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.app.helper.GlideHelper;
+import com.ivo.qqreader.sidebar.helper.SidebarHelper;
 import com.ivo.qqreader.sidebar.item.model.SidebarItem;
 
 import java.util.Arrays;
@@ -15,7 +16,7 @@ import javax.inject.Inject;
 
 public class SidebarAdapter extends BaseQuickAdapter<SidebarItem, BaseViewHolder> {
 
-    public SidebarAdapter() {
+    SidebarAdapter() {
         super(R.layout.item_sidebar);
         AppComponentProvider.provide().inject(this);
     }
@@ -40,9 +41,9 @@ public class SidebarAdapter extends BaseQuickAdapter<SidebarItem, BaseViewHolder
     GlideHelper glideHelper;
 
     @Override
-    protected void convert(BaseViewHolder viewHolder, SidebarItem item) {
-        viewHolder.setText(R.id.tvText, item.getText());
-        glideHelper.loadImg(item.getIcon(), viewHolder.getView(R.id.ivIcon));
+    protected void convert(BaseViewHolder viewHolder, SidebarItem sidebarItem) {
+        viewHolder.setText(R.id.tvText, sidebarItem.getText());
+        glideHelper.loadImg(sidebarItem.getIcon(), viewHolder.getView(R.id.ivIcon));
     }
 
 }

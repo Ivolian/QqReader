@@ -1,4 +1,4 @@
-package com.ivo.qqreader.discover.info;
+package com.ivo.qqreader.discover.info.renderer;
 
 import android.widget.ImageView;
 
@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppScope;
 import com.ivo.qqreader.app.helper.GlideHelper;
+import com.ivo.qqreader.discover.info.response.InfoResponse;
 
 import javax.inject.Inject;
 

@@ -8,10 +8,8 @@ import java.util.List;
 
 public class SideItemProvider {
 
-    public  List<SidebarItem> provide() {
+    public List<SidebarItem> provide() {
         return Arrays.asList(
-                new SidebarItem(R.drawable.profile_account_icon, "个性主题"),
-                new SidebarItem(R.drawable.profile_account_icon, "退出登录"),
                 new SidebarItem(R.drawable.profile_account_icon, "我的账户"),
                 new SidebarItem(R.drawable.profile_month_icon, "包月特权"),
                 new SidebarItem(R.drawable.profile_package_icon, "我的超值包"),

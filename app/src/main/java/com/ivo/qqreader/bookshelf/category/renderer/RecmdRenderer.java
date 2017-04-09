@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookStack.category.renderer;
+package com.ivo.qqreader.bookshelf.category.renderer;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppScope;
 import com.ivo.qqreader.app.helper.GlideHelper;
-import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookshelf.category.response.BookCategoryResponse;
 
 import javax.inject.Inject;
 

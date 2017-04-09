@@ -1,7 +1,7 @@
-package com.ivo.qqreader.bookStack.category.response;
+package com.ivo.qqreader.bookshelf.category.response;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.ivo.qqreader.bookStack.category.ItemType;
+import com.ivo.qqreader.bookshelf.category.BookCategoryAdapter;
 
 import java.util.List;
 
@@ -214,7 +214,7 @@ public class BookCategoryResponse {
 
         @Override
         public int getItemType() {
-            return ItemType.LINE;
+            return BookCategoryAdapter.ItemType.LINE;
         }
 
         /**
@@ -235,7 +235,7 @@ public class BookCategoryResponse {
     public static class Count implements MultiItemEntity {
         @Override
         public int getItemType() {
-            return ItemType.COUNT;
+            return BookCategoryAdapter.ItemType.COUNT;
         }
 
         /**
@@ -304,7 +304,7 @@ public class BookCategoryResponse {
     public static class Category implements MultiItemEntity {
         @Override
         public int getItemType() {
-            return ItemType.CATEGORY;
+            return BookCategoryAdapter.ItemType.CATEGORY;
         }
 
         /**
@@ -539,6 +539,15 @@ public class BookCategoryResponse {
             private String deviceModel;
             private String position;
             private String category;
+            private String uTag;
+
+            public String getuTag() {
+                return uTag;
+            }
+
+            public void setuTag(String uTag) {
+                this.uTag = uTag;
+            }
 
             public String getCashDays() {
                 return cashDays;
@@ -778,7 +787,7 @@ public class BookCategoryResponse {
 
         @Override
         public int getItemType() {
-            return ItemType.RECMD;
+            return BookCategoryAdapter.ItemType.RECMD;
         }
 
         /**

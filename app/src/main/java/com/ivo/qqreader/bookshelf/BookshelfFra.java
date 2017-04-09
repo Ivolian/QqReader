@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookStack;
+package com.ivo.qqreader.bookshelf;
 
 import android.support.v4.view.ViewPager;
 
@@ -13,11 +13,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class BookStackFra extends BaseFra {
+public class BookshelfFra extends BaseFra {
 
     @Override
     protected int layoutResId() {
-        return R.layout.frg_book_stack;
+        return R.layout.frg_bookshelf;
     }
 
     @Override
@@ -33,8 +33,7 @@ public class BookStackFra extends BaseFra {
     HorseTabLayout horseTabLayout;
 
     private void initViews() {
-        BookStackPagerAdapter adapter = new BookStackPagerAdapter(getChildFragmentManager());
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(new BookshelfPagerAdapter(getChildFragmentManager()));
         horseTabLayout.setUpViewPager(viewPager);
     }
 

@@ -37,14 +37,14 @@ public class SidebarFra extends BaseFra {
 
     private void initRecycleView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.addItemDecoration(new SidebarItemDecoration());
+
         SidebarAdapter sidebarAdapter = new SidebarAdapter();
         sidebarAdapter.addHeaderView(new SidebarHeaderView(context));
-        recyclerView.setAdapter(sidebarAdapter);
-        recyclerView.addItemDecoration(new SidebarDecoration());
-
-        SideItemProvider sideItemProvider = new SideItemProvider();
-        sidebarAdapter.setNewData(sideItemProvider.provide());
         setOnItemClickListener(sidebarAdapter);
+        recyclerView.setAdapter(sidebarAdapter);
+
+        sidebarAdapter.setNewData(new SideItemProvider().provide());
     }
 
     @Inject
@@ -53,12 +53,7 @@ public class SidebarFra extends BaseFra {
     private void setOnItemClickListener(SidebarAdapter sidebarAdapter) {
         sidebarAdapter.setOnItemClickListener((adapter, view, position) -> {
             SidebarItem sidebarItem = (SidebarItem) adapter.getData().get(position);
-            String text = sidebarItem.getText();
-            if (text.equals("个性主题") || text.equals("退出登录")) {
-                toastHelper.mayByDevelop(text);
-            } else {
-                toastHelper.wontDevelop(text);
-            }
+            toastHelper.wontDevelop(sidebarItem.getText());
         });
     }
 

@@ -24,6 +24,7 @@ import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.item.BaseTabItem;
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView;
+import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 import me.yokeyword.fragmentation.SupportActivity;
 import qiu.niorgai.StatusBarCompat;
 
@@ -51,13 +52,13 @@ public class MainAct extends SupportActivity {
     private void initDrawerLayout() {
         drawerLayout.setDrawerShadow(R.drawable.sidebar_shadow, Gravity.START);
         try {
-            changeSensitivity();
+            changeDrawerSensitivity();
         } catch (Exception e) {
             // do nothing
         }
     }
 
-    private void changeSensitivity() throws Exception {
+    private void changeDrawerSensitivity() throws Exception {
         Field field = drawerLayout.getClass().getDeclaredField("mLeftDragger");
         field.setAccessible(true);
         ViewDragHelper viewDragHelper = (ViewDragHelper) field.get(drawerLayout);
@@ -79,6 +80,7 @@ public class MainAct extends SupportActivity {
 
     private void initViewPager() {
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(mainPagerAdapter);
     }
 
@@ -94,7 +96,21 @@ public class MainAct extends SupportActivity {
                 .build();
         navigationController.setupWithViewPager(viewPager);
         navigationController.setSelect(0);
-        navigationController.setHasMessage(3, true);
+        int discoverPosition = 3;
+        navigationController.setHasMessage(discoverPosition, true);
+        navigationController.addTabItemSelectedListener(new OnTabItemSelectedListener() {
+            @Override
+            public void onSelected(int i, int i1) {
+                if (i == discoverPosition) {
+                    navigationController.setHasMessage(discoverPosition, false);
+                }
+            }
+
+            @Override
+            public void onRepeat(int i) {
+
+            }
+        });
     }
 
     @BindColor(R.color.colorPrimary)

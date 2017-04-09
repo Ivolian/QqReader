@@ -4,6 +4,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
+import com.ivo.qqreader.discover.info.renderer.InfoRenderer;
+import com.ivo.qqreader.discover.info.response.InfoResponse;
 
 import javax.inject.Inject;
 

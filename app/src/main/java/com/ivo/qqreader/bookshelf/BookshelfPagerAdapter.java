@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookStack;
+package com.ivo.qqreader.bookshelf;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.Arrays;
 import java.util.List;
 
-public class BookStackPagerAdapter extends FragmentPagerAdapter {
+class BookshelfPagerAdapter extends FragmentPagerAdapter {
 
- public    BookStackPagerAdapter(FragmentManager fm) {
+    BookshelfPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

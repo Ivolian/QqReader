@@ -1,14 +1,14 @@
-package com.ivo.qqreader.bookStack.category;
+package com.ivo.qqreader.bookshelf.category;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
-import com.ivo.qqreader.bookStack.category.renderer.CategoryRenderer;
-import com.ivo.qqreader.bookStack.category.renderer.CountRenderer;
-import com.ivo.qqreader.bookStack.category.renderer.LineRenderer;
-import com.ivo.qqreader.bookStack.category.renderer.RecmdRenderer;
+import com.ivo.qqreader.bookshelf.category.renderer.CategoryRenderer;
+import com.ivo.qqreader.bookshelf.category.renderer.CountRenderer;
+import com.ivo.qqreader.bookshelf.category.renderer.LineRenderer;
+import com.ivo.qqreader.bookshelf.category.renderer.RecmdRenderer;
 
 import java.util.List;
 
@@ -19,7 +19,6 @@ public class BookCategoryAdapter extends BaseMultiItemQuickAdapter<MultiItemEnti
     public BookCategoryAdapter(List<MultiItemEntity> data) {
         super(data);
         AppComponentProvider.provide().inject(this);
-
         addItemType(ItemType.COUNT, R.layout.item_count);
         addItemType(ItemType.RECMD, R.layout.item_recmd);
         addItemType(ItemType.LINE, R.layout.item_line);
@@ -54,6 +53,13 @@ public class BookCategoryAdapter extends BaseMultiItemQuickAdapter<MultiItemEnti
                 lineRenderer.render(viewHolder, item);
                 break;
         }
+    }
+
+    public static class ItemType {
+        public static final int COUNT = 0;
+        public static final int LINE = 1;
+        public static final int RECMD = 2;
+        public static final int CATEGORY = 3;
     }
 
 }

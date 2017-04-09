@@ -1,6 +1,6 @@
 package com.ivo.qqreader.app;
 
-import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookshelf.category.response.BookCategoryResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.app.helper.ToastHelper;
-import com.ivo.qqreader.sidebar.SidebarHelper;
+import com.ivo.qqreader.sidebar.helper.SidebarHelper;
 
 import javax.inject.Inject;
 

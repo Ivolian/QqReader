@@ -12,6 +12,7 @@ import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.InfoService;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.base.BaseFra;
+import com.ivo.qqreader.discover.info.response.InfoResponse;
 
 import java.util.ArrayList;
 import java.util.List;

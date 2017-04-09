@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookStack.category;
+package com.ivo.qqreader.bookshelf.category;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,8 @@ import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.BookService;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.base.BaseFra;
-import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookshelf.category.response.BookCategoryResponse;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,7 +75,7 @@ public abstract class BookCategoryFra extends BaseFra {
     private void initRecycleView() {
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         recyclerView.setAdapter(bookCategoryAdapter = new BookCategoryAdapter(new ArrayList<>()));
-        recyclerView.addItemDecoration(new ItemDecoration());
+        recyclerView.addItemDecoration(new BookCategoryItemDecoration());
         bookCategoryAdapter.setSpanSizeLookup((gridLayoutManager, position) -> Arrays.asList(1, 2, 3, 4).contains(position) ? 1 : 2);
     }
 
@@ -82,7 +83,7 @@ public abstract class BookCategoryFra extends BaseFra {
     BookService bookService;
 
     private void loadBooks() {
-        hideErrowView();
+        hideErrorView();
         bookService.queryOperation(categoryFlag())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -94,51 +95,56 @@ public abstract class BookCategoryFra extends BaseFra {
 
                     @Override
                     public void onError(Throwable e) {
-                        showErrowView();
+                        showErrorView();
+                        Logger.e(e,"...");
                     }
 
                     @Override
-                    public void onNext(BookCategoryResponse categoryResponse) {
-                        List<MultiItemEntity> list = new ArrayList<>();
-                        if (categoryResponse.getCount() != null) {
-                            list.add(categoryResponse.getCount());
-                        }
-                        if (categoryResponse.getRecmd() != null) {
-                            list.addAll(categoryResponse.getRecmd());
-                        }
-
-                        if (categoryResponse.getBoyCategoryList() != null) {
-                            list.addAll(categoryResponse.getBoyCategoryList());
-                        }
-                        if (categoryResponse.getLine() != null) {
-                            list.add(categoryResponse.getLine());
-                        }
-                        if (categoryResponse.getGirlCategoryList() != null) {
-                            list.addAll(categoryResponse.getGirlCategoryList());
-                        }
-                        if (categoryResponse.getPublishCategoryList() != null) {
-                            list.addAll(categoryResponse.getPublishCategoryList());
-                        }
-                        bookCategoryAdapter.setNewData(list);
+                    public void onNext(BookCategoryResponse bookCategoryResponse) {
+                        bookCategoryAdapter.setNewData(transform(bookCategoryResponse));
                     }
                 });
     }
 
+    private List<MultiItemEntity> transform(BookCategoryResponse bookCategoryResponse) {
+        List<MultiItemEntity> multiItemEntities = new ArrayList<>();
+        if (bookCategoryResponse.getCount() != null) {
+            multiItemEntities.add(bookCategoryResponse.getCount());
+        }
+        if (bookCategoryResponse.getRecmd() != null) {
+            multiItemEntities.addAll(bookCategoryResponse.getRecmd());
+        }
+        if (bookCategoryResponse.getBoyCategoryList() != null) {
+            multiItemEntities.addAll(bookCategoryResponse.getBoyCategoryList());
+        }
+        if (bookCategoryResponse.getLine() != null) {
+            multiItemEntities.add(bookCategoryResponse.getLine());
+        }
+        if (bookCategoryResponse.getGirlCategoryList() != null) {
+            multiItemEntities.addAll(bookCategoryResponse.getGirlCategoryList());
+        }
+        if (bookCategoryResponse.getPublishCategoryList() != null) {
+            multiItemEntities.addAll(bookCategoryResponse.getPublishCategoryList());
+        }
+        return multiItemEntities;
+    }
 
     @BindView(R.id.errorView)
-    FrameLayout flEmptyView;
+    FrameLayout errorView;
 
-    private void showErrowView(){
-        flEmptyView.setVisibility(View.VISIBLE);
+    private void showErrorView() {
+        errorView.setVisibility(View.VISIBLE);
     }
 
 
-    private void hideErrowView(){
-        flEmptyView.setVisibility(View.INVISIBLE);
+    private void hideErrorView() {
+        errorView.setVisibility(View.INVISIBLE);
     }
 
     @OnClick(R.id.tvReload)
-    public void reload(){
+    public void reload() {
+        swipeRefreshLayout.setRefreshing(true);
         loadBooks();
     }
+
 }

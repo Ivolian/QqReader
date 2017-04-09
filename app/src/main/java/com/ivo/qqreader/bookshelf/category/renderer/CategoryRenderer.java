@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookStack.category.renderer;
+package com.ivo.qqreader.bookshelf.category.renderer;
 
 import android.widget.ImageView;
 
@@ -9,7 +9,7 @@ import com.ivo.qqreader.app.BookCoverHelper;
 import com.ivo.qqreader.app.dagger.AppScope;
 import com.ivo.qqreader.app.helper.DensityHelper;
 import com.ivo.qqreader.app.helper.GlideHelper;
-import com.ivo.qqreader.bookStack.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookshelf.category.response.BookCategoryResponse;
 
 import javax.inject.Inject;
 
@@ -36,7 +36,6 @@ public class CategoryRenderer {
         String bid = bids[0];
         String imgUrl = BookCoverHelper.coverUrl(bid);
         glideHelper.loadImg(imgUrl, ivBook);
-
         ivBook = viewHolder.getView(R.id.ivBookLeft);
         bid = bids[1];
         imgUrl = BookCoverHelper.coverUrl(bid);
@@ -45,9 +44,6 @@ public class CategoryRenderer {
         bid = bids[2];
         imgUrl = BookCoverHelper.coverUrl(bid);
         glideHelper.loadImg(imgUrl, ivBook);
-
-
     }
-
 
 }

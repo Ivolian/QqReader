@@ -1,4 +1,4 @@
-package com.ivo.qqreader.sidebar;
+package com.ivo.qqreader.sidebar.helper;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
