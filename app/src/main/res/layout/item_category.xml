@@ -26,17 +26,7 @@
             android:layout_gravity="bottom"
             android:layout_marginLeft="40dp"
             android:scaleType="fitXY" />
-        <com.gigamole.library.ShadowLayout
-            android:id="@+id/s"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="2dp"
-            app:sl_shadowed="true"
-            app:sl_shadow_angle="45"
-            app:sl_shadow_radius="20dp"
-            app:sl_shadow_distance="30dp"
 
-            app:sl_shadow_color="#000">
 
             <!-- Set your child`s-->
 
@@ -47,7 +37,7 @@
             android:layout_width="20dp"
             android:layout_height="22dp"
             android:scaleType="fitXY" />
-        </com.gigamole.library.ShadowLayout>
+
 
     </FrameLayout>
 

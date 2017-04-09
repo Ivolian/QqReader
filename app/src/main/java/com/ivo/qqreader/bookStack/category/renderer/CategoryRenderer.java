@@ -4,7 +4,6 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.gigamole.library.ShadowLayout;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.BookCoverHelper;
 import com.ivo.qqreader.app.dagger.AppScope;
@@ -37,8 +36,7 @@ public class CategoryRenderer {
         String bid = bids[0];
         String imgUrl = BookCoverHelper.coverUrl(bid);
         glideHelper.loadImg(imgUrl, ivBook);
-        ShadowLayout s = viewHolder.getView(R.id.s);
-        s.requestLayout();
+
         ivBook = viewHolder.getView(R.id.ivBookLeft);
         bid = bids[1];
         imgUrl = BookCoverHelper.coverUrl(bid);

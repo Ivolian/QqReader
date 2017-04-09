@@ -5,8 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ivo.qqreader.bookStack.BookStackFra;
+import com.ivo.qqreader.discover.DiscoverFra;
 import com.ivo.qqreader.main.temp.AFra;
-import com.ivo.qqreader.main.temp.BFra;
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
@@ -20,13 +20,12 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new AFra();
             case 1:
-                return new BFra();
+                return new AFra();
             case 2:
                 return new BookStackFra();
             case 3:
-                return new BFra();
+                return new DiscoverFra();
         }
-
         return null;
     }
 

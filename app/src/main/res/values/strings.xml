@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">HorseReader</string>
+    <string name="app_name">心悦阅读</string>
+    <array name="titles">
+        <item >多发发Safari</item>
+        <item >HorseReader</item>
+    </array>
+
 </resources>

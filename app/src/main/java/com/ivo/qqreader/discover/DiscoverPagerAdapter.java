@@ -1,19 +1,22 @@
-package com.ivo.qqreader.bookStack;
+package com.ivo.qqreader.discover;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.ivo.qqreader.bookStack.OriginalCategoryFra;
+import com.ivo.qqreader.bookStack.PublishCategoryFra;
+
 import java.util.Arrays;
 import java.util.List;
 
-public class BookStackPagerAdapter extends FragmentPagerAdapter {
+public class DiscoverPagerAdapter extends FragmentPagerAdapter {
 
- public    BookStackPagerAdapter(FragmentManager fm) {
+ public DiscoverPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
-    private final List<String> TITLES = Arrays.asList("出版图书", "原创文学");
+    private final List<String> TITLES = Arrays.asList("最新", "经典");
 
     @Override
     public Fragment getItem(int position) {
