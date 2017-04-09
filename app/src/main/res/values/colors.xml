@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3399FF</color>
     <color name="colorPrimaryDark">@color/colorPrimary</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">@color/colorPrimary</color>
     <color name="sideBarItemBg">#10ffffff</color>
 
 </resources>

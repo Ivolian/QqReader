@@ -5,12 +5,14 @@ import com.ivo.qqreader.bookStack.category.BookCategoryAdapter;
 import com.ivo.qqreader.bookStack.category.BookCategoryFra;
 import com.ivo.qqreader.bookStack.category.ItemDecoration;
 import com.ivo.qqreader.discover.DiscoverFra;
-import com.ivo.qqreader.ui.HorseTabLayout;
+import com.ivo.qqreader.discover.InfoAdapter;
+import com.ivo.qqreader.discover.InfoFra;
 import com.ivo.qqreader.main.watcher.BackPressWatcher;
 import com.ivo.qqreader.sidebar.SidebarAdapter;
 import com.ivo.qqreader.sidebar.SidebarDecoration;
 import com.ivo.qqreader.sidebar.SidebarFra;
 import com.ivo.qqreader.sidebar.header.SidebarHeaderView;
+import com.ivo.qqreader.ui.HorseTabLayout;
 
 import dagger.Component;
 
@@ -29,5 +31,8 @@ public interface AppComponent {
     void  inject(ItemDecoration o);
     void  inject(BookStackFra o);
     void  inject(DiscoverFra o);
+    void  inject(InfoAdapter o);
+    void  inject(InfoFra o);
+    void  inject(com.ivo.qqreader.discover.ItemDecoration o);
 
 }

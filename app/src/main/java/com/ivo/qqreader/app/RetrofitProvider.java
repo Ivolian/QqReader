@@ -1,8 +1,6 @@
 package com.ivo.qqreader.app;
 
 
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
@@ -17,10 +15,10 @@ public class RetrofitProvider {
     }
 
     public final Retrofit provide() {
-        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
-                .readTimeout(10, TimeUnit.SECONDS)
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS);
+        OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+//                .readTimeout(10, TimeUnit.SECONDS)
+//                .connectTimeout(10, TimeUnit.SECONDS)
+//                .writeTimeout(10, TimeUnit.SECONDS);
 //            okHttpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
         OkHttpClient okHttpClient = okHttpClientBuilder.build();
         return new Retrofit.Builder()

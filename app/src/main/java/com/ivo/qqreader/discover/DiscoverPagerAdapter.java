@@ -4,15 +4,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ivo.qqreader.bookStack.OriginalCategoryFra;
-import com.ivo.qqreader.bookStack.PublishCategoryFra;
-
 import java.util.Arrays;
 import java.util.List;
 
-public class DiscoverPagerAdapter extends FragmentPagerAdapter {
+class DiscoverPagerAdapter extends FragmentPagerAdapter {
 
- public DiscoverPagerAdapter(FragmentManager fm) {
+    DiscoverPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -22,9 +19,9 @@ public class DiscoverPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new PublishCategoryFra();
+                return new LatestFra();
             case 1:
-                return new OriginalCategoryFra();
+                return new ClassicFra();
         }
         return null;
     }
