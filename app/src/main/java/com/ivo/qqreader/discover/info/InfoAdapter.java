@@ -2,14 +2,15 @@ package com.ivo.qqreader.discover.info;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
 
 import javax.inject.Inject;
 
 public class InfoAdapter extends BaseQuickAdapter<InfoResponse.InfosBean.Info, BaseViewHolder> {
 
-     InfoAdapter(int layoutResId) {
-        super(layoutResId);
+     InfoAdapter() {
+        super(R.layout.item_info);
         AppComponentProvider.provide().inject(this);
     }
 

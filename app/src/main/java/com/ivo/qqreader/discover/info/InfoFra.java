@@ -45,7 +45,7 @@ public abstract class InfoFra extends BaseFra {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         swipeRefreshLayout.setRefreshing(true);
-        loadSpot();
+        loadFirst();
     }
 
     @BindColor(R.color.colorPrimary)
@@ -56,41 +56,44 @@ public abstract class InfoFra extends BaseFra {
 
     private void initSwipeRefreshLayout() {
         swipeRefreshLayout.setColorSchemeColors(colorPrimary);
-        swipeRefreshLayout.setOnRefreshListener(this::loadSpot);
+        swipeRefreshLayout.setOnRefreshListener(this::loadFirst);
     }
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
-    InfoAdapter infoAdapter;
+    private InfoAdapter infoAdapter;
 
     private void initRecycleView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(infoAdapter = new InfoAdapter(R.layout.item_info));
         recyclerView.addItemDecoration(new InfoItemDecoration());
-        addLoadMoreListener();
+        recyclerView.setAdapter(infoAdapter = new InfoAdapter());
+        addLoadMoreListenerIfNeed();
+
     }
 
-    private void addLoadMoreListener() {
+    private void addLoadMoreListenerIfNeed() {
         if (supportLoadMore()) {
-            infoAdapter.setOnLoadMoreListener(this::loadMore, recyclerView);
+            infoAdapter.setOnLoadMoreListener(this::loadNext, recyclerView);
         }
     }
 
     @Inject
     InfoService infoService;
 
-    private Observable<InfoResponse> loadByPagestamp(int papestamp) {
-        return infoService.listDispatch("topicstream", actionTag(), 1, papestamp)
+    private Observable<InfoResponse> loadInfo() {
+        return infoService.listDispatch("topicstream", actionTag(), 1, pagestamp)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    int pagestamp = 1;
 
-    private void loadSpot() {
+
+    private int pagestamp = 1;
+
+    private void loadFirst() {
         pagestamp = 1;
-        loadByPagestamp(pagestamp).subscribe(new Subscriber<InfoResponse>() {
+        loadInfo().subscribe(new Subscriber<InfoResponse>() {
             @Override
             public void onCompleted() {
                 swipeRefreshLayout.setRefreshing(false);
@@ -108,28 +111,27 @@ public abstract class InfoFra extends BaseFra {
         });
     }
 
+    private void loadNext() {
+        loadInfo().subscribe(new Subscriber<InfoResponse>() {
+            @Override
+            public void onCompleted() {
 
-    private void loadMore() {
-        loadByPagestamp(pagestamp)
-                .subscribe(new Subscriber<InfoResponse>() {
-                    @Override
-                    public void onCompleted() {
+            }
 
-                    }
+            @Override
+            public void onError(Throwable e) {
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onNext(InfoResponse infoResponse) {
-                        infoAdapter.loadMoreComplete();
-                        infoAdapter.addData(infos(infoResponse));
-                        pagestamp++;
-                    }
-                });
+            @Override
+            public void onNext(InfoResponse infoResponse) {
+                infoAdapter.loadMoreComplete();
+                infoAdapter.addData(infos(infoResponse));
+                pagestamp++;
+            }
+        });
     }
 
+    @SuppressWarnings("Convert2streamapi")
     private List<InfoResponse.InfosBean.Info> infos(InfoResponse infoResponse) {
         List<InfoResponse.InfosBean.Info> infos = new ArrayList<>();
         for (InfoResponse.InfosBean infosBean : infoResponse.getInfos()) {
