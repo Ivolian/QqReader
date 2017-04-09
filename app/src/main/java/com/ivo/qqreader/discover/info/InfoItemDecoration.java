@@ -1,4 +1,4 @@
-package com.ivo.qqreader.discover;
+package com.ivo.qqreader.discover.info;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
@@ -9,20 +9,21 @@ import com.ivo.qqreader.app.helper.DensityHelper;
 
 import javax.inject.Inject;
 
-public class ItemDecoration extends RecyclerView.ItemDecoration {
+public class InfoItemDecoration extends RecyclerView.ItemDecoration {
 
     @Inject
     DensityHelper densityHelper;
 
-    public ItemDecoration() {
+    public InfoItemDecoration() {
         AppComponentProvider.provide().inject(this);
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-
-        outRect.set(0, 0, 0, densityHelper.dip2Px(8));
+        int position = parent.getChildLayoutPosition(view);
+        int offset = densityHelper.dip2Px(position == state.getItemCount() - 1 ? 0 : 8);
+        outRect.set(0, 0, 0, offset);
     }
 
 }

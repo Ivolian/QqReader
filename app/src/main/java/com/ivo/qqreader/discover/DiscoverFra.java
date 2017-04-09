@@ -30,11 +30,11 @@ public class DiscoverFra extends BaseFra {
     ViewPager viewPager;
 
     @BindView(R.id.tabLayout)
-    SlidingTabLayout tabLayout;
+    SlidingTabLayout slidingTabLayout;
 
     private void initViews() {
         viewPager.setAdapter(new DiscoverPagerAdapter(getChildFragmentManager()));
-        tabLayout.setViewPager(viewPager);
+        slidingTabLayout.setViewPager(viewPager);
     }
 
     @Inject
@@ -44,4 +44,5 @@ public class DiscoverFra extends BaseFra {
     public void searchOnClick() {
         toastHelper.wontDevelop("查询功能");
     }
+
 }

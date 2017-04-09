@@ -1,6 +1,6 @@
 package com.ivo.qqreader.app;
 
-import com.ivo.qqreader.discover.InfoResponse;
+import com.ivo.qqreader.discover.info.InfoResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

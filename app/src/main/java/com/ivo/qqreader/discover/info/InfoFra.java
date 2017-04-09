@@ -1,4 +1,4 @@
-package com.ivo.qqreader.discover;
+package com.ivo.qqreader.discover.info;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,7 +27,7 @@ public abstract class InfoFra extends BaseFra {
 
     protected abstract int actionTag();
 
-    protected abstract  boolean supportLoadMore();
+    protected abstract boolean supportLoadMore();
 
     @Override
     protected int layoutResId() {
@@ -41,6 +41,12 @@ public abstract class InfoFra extends BaseFra {
         initRecycleView();
     }
 
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        swipeRefreshLayout.setRefreshing(true);
+        loadSpot();
+    }
 
     @BindColor(R.color.colorPrimary)
     int colorPrimary;
@@ -50,7 +56,7 @@ public abstract class InfoFra extends BaseFra {
 
     private void initSwipeRefreshLayout() {
         swipeRefreshLayout.setColorSchemeColors(colorPrimary);
-//        swipeRefreshLayout.setOnRefreshListener(this::loadSpot);
+        swipeRefreshLayout.setOnRefreshListener(this::loadSpot);
     }
 
     @BindView(R.id.recyclerView)
@@ -61,81 +67,75 @@ public abstract class InfoFra extends BaseFra {
     private void initRecycleView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(infoAdapter = new InfoAdapter(R.layout.item_info));
-        recyclerView.addItemDecoration(new ItemDecoration());
+        recyclerView.addItemDecoration(new InfoItemDecoration());
+        addLoadMoreListener();
+    }
 
-//        infoAdapter.setAutoLoadMoreSize(10);
-        infoAdapter.setOnLoadMoreListener(() -> {
-                loadMore();
-        }, recyclerView);
+    private void addLoadMoreListener() {
+        if (supportLoadMore()) {
+            infoAdapter.setOnLoadMoreListener(this::loadMore, recyclerView);
+        }
     }
 
     @Inject
     InfoService infoService;
 
-    private Observable<InfoResponse> s(int actionTag, int papestamp) {
-        return infoService.listDispatch("topicstream", actionTag, 1, papestamp)
+    private Observable<InfoResponse> loadByPagestamp(int papestamp) {
+        return infoService.listDispatch("topicstream", actionTag(), 1, papestamp)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-        swipeRefreshLayout.setRefreshing(true);
-        loadSpot();
-    }
+    int pagestamp = 1;
 
-    int pagestamp =1;
     private void loadSpot() {
-        s(actionTag(), pagestamp)
-                .subscribe(new Subscriber<InfoResponse>() {
-                    @Override
-                    public void onCompleted() {
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
+        pagestamp = 1;
+        loadByPagestamp(pagestamp).subscribe(new Subscriber<InfoResponse>() {
+            @Override
+            public void onCompleted() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        e.printStackTrace();
-                    }
+            @Override
+            public void onError(Throwable e) {
+            }
 
-                    @Override
-                    public void onNext(InfoResponse infoResponse) {
-                        List<InfoResponse.InfosBean.Info> infos = new ArrayList<>();
-                        for (InfoResponse.InfosBean infosBean : infoResponse.getInfos()) {
-                            infos.add(infosBean.getInfo());
-                        }
-                        infoAdapter.setNewData(infos);
-                        pagestamp++;
-                    }
-                });
+            @Override
+            public void onNext(InfoResponse infoResponse) {
+                infoAdapter.setNewData(infos(infoResponse));
+                pagestamp++;
+            }
+        });
     }
 
 
     private void loadMore() {
-        s(actionTag(), pagestamp)
+        loadByPagestamp(pagestamp)
                 .subscribe(new Subscriber<InfoResponse>() {
                     @Override
                     public void onCompleted() {
-                        swipeRefreshLayout.setRefreshing(false);
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        e.printStackTrace();
                     }
 
                     @Override
                     public void onNext(InfoResponse infoResponse) {
-                        List<InfoResponse.InfosBean.Info> infos = new ArrayList<>();
-                        for (InfoResponse.InfosBean infosBean : infoResponse.getInfos()) {
-                            infos.add(infosBean.getInfo());
-                        }
-                        infoAdapter.addData(infos);
-                        pagestamp++;
                         infoAdapter.loadMoreComplete();
+                        infoAdapter.addData(infos(infoResponse));
+                        pagestamp++;
                     }
                 });
+    }
+
+    private List<InfoResponse.InfosBean.Info> infos(InfoResponse infoResponse) {
+        List<InfoResponse.InfosBean.Info> infos = new ArrayList<>();
+        for (InfoResponse.InfosBean infosBean : infoResponse.getInfos()) {
+            infos.add(infosBean.getInfo());
+        }
+        return infos;
     }
 
 }

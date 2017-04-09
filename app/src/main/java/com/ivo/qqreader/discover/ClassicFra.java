@@ -1,7 +1,9 @@
 package com.ivo.qqreader.discover;
 
-public
-class ClassicFra extends InfoFra{
+import com.ivo.qqreader.discover.info.InfoFra;
+
+
+public class ClassicFra extends InfoFra {
 
     @Override
     protected int actionTag() {

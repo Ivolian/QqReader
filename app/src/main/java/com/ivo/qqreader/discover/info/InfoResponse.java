@@ -1,4 +1,4 @@
-package com.ivo.qqreader.discover;
+package com.ivo.qqreader.discover.info;
 
 import java.util.List;
 
