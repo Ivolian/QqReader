@@ -4,8 +4,8 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.app.helper.DensityHelper;
+import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
 
 import javax.inject.Inject;
 
@@ -15,7 +15,7 @@ public class InfoItemDecoration extends RecyclerView.ItemDecoration {
     DensityHelper densityHelper;
 
     public InfoItemDecoration() {
-        AppComponentProvider.provide().inject(this);
+        DiscoverComponentProvider.provide().inject(this);
     }
 
     @Override

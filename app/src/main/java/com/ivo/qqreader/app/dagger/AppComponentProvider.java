@@ -2,6 +2,8 @@ package com.ivo.qqreader.app.dagger;
 
 import android.app.Application;
 
+import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
+
 import dagger.internal.Preconditions;
 
 public class AppComponentProvider {
@@ -15,6 +17,9 @@ public class AppComponentProvider {
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(application))
                 .build();
+
+        // other
+        DiscoverComponentProvider.init();
     }
 
     public static AppComponent provide() {

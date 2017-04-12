@@ -53,7 +53,7 @@ public class SidebarFra extends BaseFra {
     private void setOnItemClickListener(SidebarAdapter sidebarAdapter) {
         sidebarAdapter.setOnItemClickListener((adapter, view, position) -> {
             SidebarItem sidebarItem = (SidebarItem) adapter.getData().get(position);
-            toastHelper.wontDevelop(sidebarItem.getText());
+            toastHelper.notSupport(sidebarItem.getText());
         });
     }
 

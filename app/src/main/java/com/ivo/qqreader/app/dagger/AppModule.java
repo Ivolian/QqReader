@@ -13,33 +13,33 @@ import retrofit2.Retrofit;
 
 
 @Module
- class AppModule {
+class AppModule {
 
     private final Context context;
 
-     AppModule(Application application) {
+    AppModule(Application application) {
         context = application.getApplicationContext();
     }
 
-    @AppScope
+    @App
     @Provides
     Context provideContext() {
         return context;
     }
 
-    @AppScope
+    @App
     @Provides
     Retrofit provideRetrofit(RetrofitProvider retrofitProvider) {
         return retrofitProvider.provide();
     }
 
-    @AppScope
+    @App
     @Provides
     BookService provideBookService(Retrofit retrofit) {
         return retrofit.create(BookService.class);
     }
 
-    @AppScope
+    @App
     @Provides
     InfoService provideInfoService(Retrofit retrofit) {
         return retrofit.create(InfoService.class);

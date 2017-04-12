@@ -3,7 +3,7 @@ package com.ivo.qqreader.discover.info;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.app.dagger.AppComponentProvider;
+import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
 import com.ivo.qqreader.discover.info.renderer.InfoRenderer;
 import com.ivo.qqreader.discover.info.response.InfoResponse;
 
@@ -13,7 +13,7 @@ public class InfoAdapter extends BaseQuickAdapter<InfoResponse.InfosBean.Info, B
 
      InfoAdapter() {
         super(R.layout.item_info);
-        AppComponentProvider.provide().inject(this);
+        DiscoverComponentProvider.provide().inject(this);
     }
 
     @Inject

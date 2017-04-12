@@ -1,13 +1,12 @@
 package com.ivo.qqreader.app.dagger;
 
+import com.ivo.qqreader.app.helper.DensityHelper;
+import com.ivo.qqreader.app.helper.GlideHelper;
+import com.ivo.qqreader.app.helper.ToastHelper;
 import com.ivo.qqreader.bookshelf.BookshelfFra;
 import com.ivo.qqreader.bookshelf.category.BookCategoryAdapter;
 import com.ivo.qqreader.bookshelf.category.BookCategoryFra;
 import com.ivo.qqreader.bookshelf.category.BookCategoryItemDecoration;
-import com.ivo.qqreader.discover.DiscoverFra;
-import com.ivo.qqreader.discover.info.InfoAdapter;
-import com.ivo.qqreader.discover.info.InfoFra;
-import com.ivo.qqreader.discover.info.InfoItemDecoration;
 import com.ivo.qqreader.main.BackPressConsumer;
 import com.ivo.qqreader.sidebar.SidebarAdapter;
 import com.ivo.qqreader.sidebar.SidebarFra;
@@ -16,10 +15,19 @@ import com.ivo.qqreader.sidebar.header.SidebarHeaderView;
 import com.ivo.qqreader.ui.HorseTabLayout;
 
 import dagger.Component;
+import retrofit2.Retrofit;
 
-@AppScope
+@App
 @Component(modules = {AppModule.class})
 public interface AppComponent {
+
+    Retrofit provideRetrofit();
+
+    GlideHelper provideGlideHelper();
+
+    ToastHelper provideToastHelper();
+
+    DensityHelper provideDensityHelper();
 
     // main
     void inject(BackPressConsumer o);
@@ -43,12 +51,12 @@ public interface AppComponent {
 
     void inject(BookshelfFra o);
 
-    void inject(DiscoverFra o);
+//    void inject(DiscoverFra o);
 
-    void inject(InfoAdapter o);
+//    void inject(InfoAdapter o);
 
-    void inject(InfoFra o);
+//    void inject(InfoFra o);
 
-    void inject(InfoItemDecoration o);
+//    void inject(InfoItemDecoration o);
 
 }

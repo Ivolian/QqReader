@@ -10,8 +10,8 @@ import android.widget.FrameLayout;
 
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.InfoService;
-import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.base.BaseFra;
+import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
 import com.ivo.qqreader.discover.info.response.InfoResponse;
 
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public abstract class InfoFra extends BaseFra {
 
     @Override
     protected void init() {
-        AppComponentProvider.provide().inject(this);
+        DiscoverComponentProvider.provide().inject(this);
         initSwipeRefreshLayout();
         initRecycleView();
     }
@@ -73,7 +73,6 @@ public abstract class InfoFra extends BaseFra {
         recyclerView.addItemDecoration(new InfoItemDecoration());
         recyclerView.setAdapter(infoAdapter = new InfoAdapter());
         addLoadMoreListenerIfNeed();
-
     }
 
     private void addLoadMoreListenerIfNeed() {
@@ -90,7 +89,6 @@ public abstract class InfoFra extends BaseFra {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
-
 
     private int pagestamp = 1;
 
@@ -110,7 +108,7 @@ public abstract class InfoFra extends BaseFra {
             @Override
             public void onNext(InfoResponse infoResponse) {
                 hideErrorView();
-                infoAdapter.setNewData(infos(infoResponse));
+                infoAdapter.setNewData(transform(infoResponse));
                 pagestamp++;
             }
         });
@@ -132,14 +130,14 @@ public abstract class InfoFra extends BaseFra {
             public void onNext(InfoResponse infoResponse) {
                 hideErrorView();
                 infoAdapter.loadMoreComplete();
-                infoAdapter.addData(infos(infoResponse));
+                infoAdapter.addData(transform(infoResponse));
                 pagestamp++;
             }
         });
     }
 
     @SuppressWarnings("Convert2streamapi")
-    private List<InfoResponse.InfosBean.Info> infos(InfoResponse infoResponse) {
+    private List<InfoResponse.InfosBean.Info> transform(InfoResponse infoResponse) {
         List<InfoResponse.InfosBean.Info> infos = new ArrayList<>();
         for (InfoResponse.InfosBean infosBean : infoResponse.getInfos()) {
             infos.add(infosBean.getInfo());

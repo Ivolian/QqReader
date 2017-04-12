@@ -2,12 +2,12 @@ package com.ivo.qqreader.app.helper;
 
 import android.content.Context;
 
-import com.ivo.qqreader.app.dagger.AppScope;
+import com.ivo.qqreader.app.dagger.App;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import javax.inject.Inject;
 
-@AppScope
+@App
 public class ToastHelper {
 
     private final Context context;
@@ -29,7 +29,7 @@ public class ToastHelper {
         TastyToast.makeText(context, msg, TastyToast.LENGTH_SHORT, TastyToast.INFO);
     }
 
-    public void wontDevelop(String name) {
+    public void notSupport(String name) {
         info("暂不支持" + name);
     }
 

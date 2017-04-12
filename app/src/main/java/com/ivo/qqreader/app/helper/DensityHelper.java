@@ -2,11 +2,11 @@ package com.ivo.qqreader.app.helper;
 
 import android.content.Context;
 
-import com.ivo.qqreader.app.dagger.AppScope;
+import com.ivo.qqreader.app.dagger.App;
 
 import javax.inject.Inject;
 
-@AppScope
+@App
 public class DensityHelper {
 
     private final Context context;

@@ -4,9 +4,9 @@ import android.support.v4.view.ViewPager;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.app.helper.ToastHelper;
 import com.ivo.qqreader.base.BaseFra;
+import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
 
 import javax.inject.Inject;
 
@@ -22,7 +22,7 @@ public class DiscoverFra extends BaseFra {
 
     @Override
     protected void init() {
-        AppComponentProvider.provide().inject(this);
+        DiscoverComponentProvider.provide().inject(this);
         initViews();
     }
 
@@ -42,7 +42,7 @@ public class DiscoverFra extends BaseFra {
 
     @OnClick(R.id.ivSearch)
     public void searchOnClick() {
-        toastHelper.wontDevelop("查询功能");
+        toastHelper.notSupport("查询功能");
     }
 
 }

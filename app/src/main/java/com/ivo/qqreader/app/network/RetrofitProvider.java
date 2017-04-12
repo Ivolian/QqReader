@@ -1,7 +1,7 @@
 package com.ivo.qqreader.app.network;
 
 import com.ivo.qqreader.app.AppConfig;
-import com.ivo.qqreader.app.dagger.AppScope;
+import com.ivo.qqreader.app.dagger.App;
 
 import javax.inject.Inject;
 
@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
-@AppScope
+@App
 public class RetrofitProvider {
 
     @Inject

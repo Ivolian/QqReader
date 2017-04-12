@@ -1,9 +1,9 @@
 package com.ivo.qqreader.app.helper;
 
 import com.ivo.qqreader.app.AppConfig;
-import com.ivo.qqreader.app.dagger.AppScope;
+import com.ivo.qqreader.app.dagger.App;
 
-@AppScope
+@App
 public class BookCoverHelper {
 
     // 将 bookId 转化为封面地址

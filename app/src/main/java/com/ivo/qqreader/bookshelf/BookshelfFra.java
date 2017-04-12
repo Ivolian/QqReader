@@ -42,7 +42,7 @@ public class BookshelfFra extends BaseFra {
 
     @OnClick(R.id.ivSearch)
     public void searchOnClick() {
-        toastHelper.wontDevelop("查询功能");
+        toastHelper.notSupport("查询功能");
     }
 
 }
