@@ -30,7 +30,7 @@ public class ToastHelper {
     }
 
     public void notSupport(String name) {
-        info("暂不支持" + name);
+        success("暂不支持" + name);
     }
 
     public void mayByDevelop(String name) {

@@ -32,25 +32,24 @@ public class SidebarFra extends BaseFra {
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+    private SidebarAdapter sidebarAdapter;
+
     @Inject
     Context context;
 
     private void initRecycleView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.addItemDecoration(new SidebarItemDecoration());
-
-        SidebarAdapter sidebarAdapter = new SidebarAdapter();
+        recyclerView.setAdapter(sidebarAdapter = new SidebarAdapter());
         sidebarAdapter.addHeaderView(new SidebarHeaderView(context));
-        setOnItemClickListener(sidebarAdapter);
-        recyclerView.setAdapter(sidebarAdapter);
-
         sidebarAdapter.setNewData(new SideItemProvider().provide());
+        setOnItemClickListener();
     }
 
     @Inject
     ToastHelper toastHelper;
 
-    private void setOnItemClickListener(SidebarAdapter sidebarAdapter) {
+    private void setOnItemClickListener() {
         sidebarAdapter.setOnItemClickListener((adapter, view, position) -> {
             SidebarItem sidebarItem = (SidebarItem) adapter.getData().get(position);
             toastHelper.notSupport(sidebarItem.getText());

@@ -19,6 +19,7 @@ import retrofit2.Retrofit;
 @Component(modules = {AppModule.class})
 public interface AppComponent {
 
+    //
     Context provideContext();
 
     Retrofit provideRetrofit();
@@ -32,16 +33,16 @@ public interface AppComponent {
     // main
     void inject(BackPressConsumer o);
 
-    //
+    // sidebar
+    void inject(SidebarFra o);
+
     void inject(SidebarItemDecoration o);
 
     void inject(SidebarAdapter o);
 
-    void inject(SidebarFra o);
-
     void inject(SidebarHeaderView o);
 
+    // ui
     void inject(HorseTabLayout o);
-
 
 }

@@ -69,7 +69,7 @@ public abstract class BookCategoryFra extends BaseFra {
     @Inject
     Context context;
 
-    BookCategoryAdapter bookCategoryAdapter;
+    private BookCategoryAdapter bookCategoryAdapter;
 
     private void initRecycleView() {
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));

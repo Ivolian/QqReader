@@ -44,14 +44,12 @@ public class SidebarHeaderView extends FrameLayout {
     @Inject
     ToastHelper toastHelper;
 
-
     @BindView(R.id.clHeader)
     ConstraintLayout clHeader;
 
     @OnClick(R.id.clHeader)
     public void headerOnClick() {
-        toastHelper.mayByDevelop("登录功能");
+        toastHelper.notSupport("登录功能");
     }
-
 
 }

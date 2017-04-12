@@ -7,16 +7,17 @@ import android.support.v4.content.ContextCompat;
 import android.view.ViewGroup;
 
 import com.ivo.qqreader.R;
+import com.ivo.qqreader.app.dagger.App;
 
 import javax.inject.Inject;
 
-
+@App
 public class SidebarHelper {
 
     private final Context context;
 
     @Inject
-    public SidebarHelper(Context context) {
+    SidebarHelper(Context context) {
         this.context = context;
     }
 
