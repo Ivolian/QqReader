@@ -21,20 +21,12 @@ public class ToastHelper {
         TastyToast.makeText(context, msg, TastyToast.LENGTH_SHORT, TastyToast.ERROR);
     }
 
-    public void success(String msg) {
+    private void success(String msg) {
         TastyToast.makeText(context, msg, TastyToast.LENGTH_SHORT, TastyToast.SUCCESS);
-    }
-
-    public void info(String msg) {
-        TastyToast.makeText(context, msg, TastyToast.LENGTH_SHORT, TastyToast.INFO);
     }
 
     public void notSupport(String name) {
         success("暂不支持" + name);
-    }
-
-    public void mayByDevelop(String name) {
-        success(name + "等待开发");
     }
 
 }

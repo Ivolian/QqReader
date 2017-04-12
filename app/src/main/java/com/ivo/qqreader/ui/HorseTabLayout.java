@@ -82,9 +82,9 @@ public class HorseTabLayout extends LinearLayout {
 
     // ================== setTabs
 
-    float mPositionOffset;
+    private float mPositionOffset;
 
-    private int radius = 10000;
+    private final int radius = 10000;
 
     private void setUpBackground() {
         GradientDrawable bg = new GradientDrawable();
@@ -94,7 +94,7 @@ public class HorseTabLayout extends LinearLayout {
         setBackground(bg);
     }
 
-    private GradientDrawable indicatorDrawable = new GradientDrawable();
+    private final GradientDrawable indicatorDrawable = new GradientDrawable();
 
     private void setUpIndicatorDrawable() {
         indicatorDrawable.setCornerRadius(radius);
@@ -128,7 +128,7 @@ public class HorseTabLayout extends LinearLayout {
     @BindView(R.id.tab2)
     TextView tab2;
 
-    private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+    private final ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     private void changeTabsColor() {
         int color1 = (int) argbEvaluator.evaluate(mPositionOffset, colorPrimary, white);

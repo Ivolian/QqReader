@@ -2,9 +2,9 @@ package com.ivo.qqreader.sidebar.item.model;
 
 public class SidebarItem {
 
-    private Integer icon;
+    private final Integer icon;
 
-    private String text;
+    private final String text;
 
     public SidebarItem(int icon, String text) {
         this.icon = icon;
