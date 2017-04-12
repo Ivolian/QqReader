@@ -1,12 +1,12 @@
-package com.ivo.qqreader.app;
+package com.ivo.qqreader.bookstack.network;
 
-import com.ivo.qqreader.bookshelf.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookstack.category.response.BookCategoryResponse;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
 
-public interface BookService {
+public interface BookCategoryService {
 
     @GET("queryOperation")
     Observable<BookCategoryResponse> queryOperation(@Query("categoryFlag") Integer categoryFlag);

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.app.InfoService;
+import com.ivo.qqreader.discover.network.InfoService;
 import com.ivo.qqreader.base.BaseFra;
 import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
 import com.ivo.qqreader.discover.info.response.InfoResponse;

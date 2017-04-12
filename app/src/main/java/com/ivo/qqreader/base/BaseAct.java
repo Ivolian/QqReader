@@ -10,7 +10,6 @@ public abstract class BaseAct extends SupportActivity {
 
     protected abstract int layoutResId();
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +21,5 @@ public abstract class BaseAct extends SupportActivity {
     protected void init(Bundle savedInstanceState){
 
     }
-
 
 }

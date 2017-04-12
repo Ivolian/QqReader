@@ -1,12 +1,10 @@
 package com.ivo.qqreader.app.dagger;
 
+import android.content.Context;
+
 import com.ivo.qqreader.app.helper.DensityHelper;
 import com.ivo.qqreader.app.helper.GlideHelper;
 import com.ivo.qqreader.app.helper.ToastHelper;
-import com.ivo.qqreader.bookshelf.BookshelfFra;
-import com.ivo.qqreader.bookshelf.category.BookCategoryAdapter;
-import com.ivo.qqreader.bookshelf.category.BookCategoryFra;
-import com.ivo.qqreader.bookshelf.category.BookCategoryItemDecoration;
 import com.ivo.qqreader.main.BackPressConsumer;
 import com.ivo.qqreader.sidebar.SidebarAdapter;
 import com.ivo.qqreader.sidebar.SidebarFra;
@@ -20,6 +18,8 @@ import retrofit2.Retrofit;
 @App
 @Component(modules = {AppModule.class})
 public interface AppComponent {
+
+    Context provideContext();
 
     Retrofit provideRetrofit();
 
@@ -43,20 +43,5 @@ public interface AppComponent {
 
     void inject(HorseTabLayout o);
 
-    void inject(BookCategoryFra o);
-
-    void inject(BookCategoryAdapter o);
-
-    void inject(BookCategoryItemDecoration o);
-
-    void inject(BookshelfFra o);
-
-//    void inject(DiscoverFra o);
-
-//    void inject(InfoAdapter o);
-
-//    void inject(InfoFra o);
-
-//    void inject(InfoItemDecoration o);
 
 }

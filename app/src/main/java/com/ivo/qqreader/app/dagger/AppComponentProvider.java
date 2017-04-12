@@ -2,6 +2,7 @@ package com.ivo.qqreader.app.dagger;
 
 import android.app.Application;
 
+import com.ivo.qqreader.bookstack.dagger.BookstackComponentProvider;
 import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
 
 import dagger.internal.Preconditions;
@@ -19,6 +20,7 @@ public class AppComponentProvider {
                 .build();
 
         // other
+        BookstackComponentProvider.init();
         DiscoverComponentProvider.init();
     }
 

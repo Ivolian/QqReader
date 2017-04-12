@@ -3,8 +3,7 @@ package com.ivo.qqreader.app.dagger;
 import android.app.Application;
 import android.content.Context;
 
-import com.ivo.qqreader.app.BookService;
-import com.ivo.qqreader.app.InfoService;
+import com.ivo.qqreader.bookstack.network.BookCategoryService;
 import com.ivo.qqreader.app.network.RetrofitProvider;
 
 import dagger.Module;
@@ -35,14 +34,8 @@ class AppModule {
 
     @App
     @Provides
-    BookService provideBookService(Retrofit retrofit) {
-        return retrofit.create(BookService.class);
-    }
-
-    @App
-    @Provides
-    InfoService provideInfoService(Retrofit retrofit) {
-        return retrofit.create(InfoService.class);
+    BookCategoryService provideBookService(Retrofit retrofit) {
+        return retrofit.create(BookCategoryService.class);
     }
 
 }

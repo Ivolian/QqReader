@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ivo.qqreader.bookshelf.BookshelfFra;
+import com.ivo.qqreader.bookstack.BookstackFra;
 import com.ivo.qqreader.discover.DiscoverFra;
 
 class MainPagerAdapter extends FragmentPagerAdapter {
@@ -19,7 +19,7 @@ class MainPagerAdapter extends FragmentPagerAdapter {
             case 0:
             case 1:
             case 2:
-                return new BookshelfFra();
+                return new BookstackFra();
             case 3:
                 return new DiscoverFra();
         }

@@ -4,9 +4,7 @@ import android.os.Bundle;
 
 import com.jude.swipbackhelper.SwipeBackHelper;
 
-import me.yokeyword.fragmentation.SupportActivity;
-
-public abstract class SwipeBackAct extends SupportActivity {
+public abstract class SwipeBackAct extends BaseAct {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

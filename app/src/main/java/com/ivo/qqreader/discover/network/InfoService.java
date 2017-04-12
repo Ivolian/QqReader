@@ -1,4 +1,4 @@
-package com.ivo.qqreader.app;
+package com.ivo.qqreader.discover.network;
 
 import com.ivo.qqreader.discover.info.response.InfoResponse;
 

@@ -1,6 +1,6 @@
-package com.ivo.qqreader.bookshelf;
+package com.ivo.qqreader.bookstack;
 
-import com.ivo.qqreader.bookshelf.category.BookCategoryFra;
+import com.ivo.qqreader.bookstack.category.BookCategoryFra;
 
 public class PublishCategoryFra extends BookCategoryFra {
 

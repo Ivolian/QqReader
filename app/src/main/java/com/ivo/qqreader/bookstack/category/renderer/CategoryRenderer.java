@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookshelf.category.renderer;
+package com.ivo.qqreader.bookstack.category.renderer;
 
 import android.widget.ImageView;
 
@@ -6,24 +6,20 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.app.helper.BookCoverHelper;
-import com.ivo.qqreader.app.dagger.App;
-import com.ivo.qqreader.app.helper.DensityHelper;
 import com.ivo.qqreader.app.helper.GlideHelper;
-import com.ivo.qqreader.bookshelf.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookstack.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookstack.dagger.Bookstack;
 
 import javax.inject.Inject;
 
-@App
+@Bookstack
 public class CategoryRenderer {
 
     private final GlideHelper glideHelper;
 
-    private final DensityHelper densityHelper;
-
     @Inject
-    public CategoryRenderer(GlideHelper glideHelper, DensityHelper densityHelper) {
+    public CategoryRenderer(GlideHelper glideHelper) {
         this.glideHelper = glideHelper;
-        this.densityHelper = densityHelper;
     }
 
     public void render(BaseViewHolder viewHolder, MultiItemEntity item) {

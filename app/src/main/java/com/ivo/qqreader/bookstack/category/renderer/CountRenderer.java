@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookshelf.category.renderer;
+package com.ivo.qqreader.bookstack.category.renderer;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -7,14 +7,14 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.app.dagger.App;
-import com.ivo.qqreader.bookshelf.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookstack.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookstack.dagger.Bookstack;
 import com.klinker.android.link_builder.Link;
 import com.klinker.android.link_builder.LinkBuilder;
 
 import javax.inject.Inject;
 
-@App
+@Bookstack
 public class CountRenderer {
 
     private final Context context;

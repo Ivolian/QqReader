@@ -1,11 +1,11 @@
-package com.ivo.qqreader.bookshelf;
+package com.ivo.qqreader.bookstack;
 
 import android.support.v4.view.ViewPager;
 
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.app.helper.ToastHelper;
 import com.ivo.qqreader.base.BaseFra;
+import com.ivo.qqreader.bookstack.dagger.BookstackComponentProvider;
 import com.ivo.qqreader.ui.HorseTabLayout;
 
 import javax.inject.Inject;
@@ -13,16 +13,16 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class BookshelfFra extends BaseFra {
+public class BookstackFra extends BaseFra {
 
     @Override
     protected int layoutResId() {
-        return R.layout.frg_bookshelf;
+        return R.layout.frg_bookstack;
     }
 
     @Override
     protected void init() {
-        AppComponentProvider.provide().inject(this);
+        BookstackComponentProvider.provide().inject(this);
         initViews();
     }
 

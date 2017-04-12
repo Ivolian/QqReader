@@ -1,7 +1,7 @@
-package com.ivo.qqreader.bookshelf.category.response;
+package com.ivo.qqreader.bookstack.category.response;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.ivo.qqreader.bookshelf.category.BookCategoryAdapter;
+import com.ivo.qqreader.bookstack.category.BookCategoryAdapter;
 
 import java.util.List;
 

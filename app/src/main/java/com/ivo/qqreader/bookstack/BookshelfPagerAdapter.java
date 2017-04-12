@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookshelf;
+package com.ivo.qqreader.bookstack;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

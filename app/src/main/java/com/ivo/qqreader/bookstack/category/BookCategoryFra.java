@@ -1,4 +1,4 @@
-package com.ivo.qqreader.bookshelf.category;
+package com.ivo.qqreader.bookstack.category;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,11 +11,10 @@ import android.widget.FrameLayout;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.app.BookService;
-import com.ivo.qqreader.app.dagger.AppComponentProvider;
 import com.ivo.qqreader.base.BaseFra;
-import com.ivo.qqreader.bookshelf.category.response.BookCategoryResponse;
-import com.orhanobut.logger.Logger;
+import com.ivo.qqreader.bookstack.category.response.BookCategoryResponse;
+import com.ivo.qqreader.bookstack.dagger.BookstackComponentProvider;
+import com.ivo.qqreader.bookstack.network.BookCategoryService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +40,7 @@ public abstract class BookCategoryFra extends BaseFra {
 
     @Override
     protected void init() {
-        AppComponentProvider.provide().inject(this);
+        BookstackComponentProvider.provide().inject(this);
         initSwipeRefreshLayout();
         initRecycleView();
     }
@@ -80,11 +79,10 @@ public abstract class BookCategoryFra extends BaseFra {
     }
 
     @Inject
-    BookService bookService;
+    BookCategoryService bookCategoryService;
 
     private void loadBooks() {
-        hideErrorView();
-        bookService.queryOperation(categoryFlag())
+        bookCategoryService.queryOperation(categoryFlag())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BookCategoryResponse>() {
@@ -96,11 +94,11 @@ public abstract class BookCategoryFra extends BaseFra {
                     @Override
                     public void onError(Throwable e) {
                         showErrorView();
-                        Logger.e(e,"...");
                     }
 
                     @Override
                     public void onNext(BookCategoryResponse bookCategoryResponse) {
+                        hideErrorView();
                         bookCategoryAdapter.setNewData(transform(bookCategoryResponse));
                     }
                 });

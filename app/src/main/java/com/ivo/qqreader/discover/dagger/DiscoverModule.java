@@ -1,6 +1,6 @@
 package com.ivo.qqreader.discover.dagger;
 
-import com.ivo.qqreader.app.InfoService;
+import com.ivo.qqreader.discover.network.InfoService;
 
 import dagger.Module;
 import dagger.Provides;
