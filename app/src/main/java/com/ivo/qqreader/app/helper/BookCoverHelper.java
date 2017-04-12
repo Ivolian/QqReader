@@ -1,20 +1,14 @@
-package com.ivo.qqreader.app;
+package com.ivo.qqreader.app.helper;
 
+import com.ivo.qqreader.app.AppConfig;
+import com.ivo.qqreader.app.dagger.AppScope;
 
-/**
- * The type Book cover helper.
- */
+@AppScope
 public class BookCoverHelper {
 
-    /**
-     * Cover url string.
-     *
-     * @param bid the bid
-     * @return the string
-     */
+    // 将 bookId 转化为封面地址
     public static String coverUrl(String bookId) {
         // 239254
-//        String bookId = "" + bid;
         int length = bookId.length();
         // 254
         String latter = bookId.substring(length - 3, length);

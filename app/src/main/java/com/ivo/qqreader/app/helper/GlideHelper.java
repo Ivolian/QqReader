@@ -5,9 +5,11 @@ import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.ivo.qqreader.app.dagger.AppScope;
 
 import javax.inject.Inject;
 
+@AppScope
 public class GlideHelper {
 
     private final Context context;

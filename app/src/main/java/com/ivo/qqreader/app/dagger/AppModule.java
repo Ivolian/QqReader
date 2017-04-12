@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.ivo.qqreader.app.BookService;
 import com.ivo.qqreader.app.InfoService;
-import com.ivo.qqreader.app.RetrofitProvider;
+import com.ivo.qqreader.app.network.RetrofitProvider;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,10 +17,11 @@ import retrofit2.Retrofit;
 
     private final Context context;
 
-    public AppModule(Application application) {
+     AppModule(Application application) {
         context = application.getApplicationContext();
     }
 
+    @AppScope
     @Provides
     Context provideContext() {
         return context;

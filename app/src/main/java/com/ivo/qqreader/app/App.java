@@ -17,13 +17,16 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initARouter();
-        initFragmentation();
-        AppComponentProvider.init(this);
-
-        Logger.init("QqReader");
+        init();
     }
 
+    private void init() {
+        AppComponentProvider.init(this);
+        initARouter();
+        initFragmentation();
+        String tag = "QqReader";
+        Logger.init(tag);
+    }
 
     private void initARouter() {
         ARouter.openLog();

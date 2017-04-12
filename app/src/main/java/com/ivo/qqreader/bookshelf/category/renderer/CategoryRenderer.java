@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.app.BookCoverHelper;
+import com.ivo.qqreader.app.helper.BookCoverHelper;
 import com.ivo.qqreader.app.dagger.AppScope;
 import com.ivo.qqreader.app.helper.DensityHelper;
 import com.ivo.qqreader.app.helper.GlideHelper;

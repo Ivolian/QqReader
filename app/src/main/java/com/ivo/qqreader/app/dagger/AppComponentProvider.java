@@ -12,9 +12,8 @@ public class AppComponentProvider {
     private static AppComponent appComponent;
 
     public static void init(Application application) {
-        AppModule appModule = new AppModule(application);
         appComponent = DaggerAppComponent.builder()
-                .appModule(appModule)
+                .appModule(new AppModule(application))
                 .build();
     }
 
