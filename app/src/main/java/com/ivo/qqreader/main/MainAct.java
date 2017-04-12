@@ -9,8 +9,11 @@ import android.view.Gravity;
 import android.view.ViewConfiguration;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.base.BaseAct;
+import com.ivo.qqreader.bus.BusAction;
 import com.ivo.qqreader.navigate.RoutePath;
 import com.ivo.qqreader.sidebar.SidebarFra;
 
@@ -31,6 +34,11 @@ public class MainAct extends BaseAct {
     @Override
     protected int layoutResId() {
         return R.layout.act_main;
+    }
+
+    @Override
+    protected boolean useRxBus() {
+        return true;
     }
 
     @Override
@@ -136,6 +144,14 @@ public class MainAct extends BaseAct {
     public void onBackPressedSupport() {
         if (!backPressConsumer.onBackPressed()) {
             super.onBackPressedSupport();
+        }
+    }
+
+    @Subscribe(tags = {@Tag(BusAction.OPEN_DRAWER)})
+    public void openDrawer(Object o) {
+        int gravity = Gravity.START;
+        if (!drawerLayout.isDrawerOpen(gravity)) {
+            drawerLayout.openDrawer(gravity);
         }
     }
 

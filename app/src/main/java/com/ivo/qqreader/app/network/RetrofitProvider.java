@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @App
 public class RetrofitProvider {
@@ -24,7 +24,7 @@ public class RetrofitProvider {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(AppConfig.BASE_REQUEST_URL)
-                .addConverterFactory(JacksonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }
