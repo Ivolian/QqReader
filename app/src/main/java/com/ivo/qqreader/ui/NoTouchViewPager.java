@@ -1,16 +1,16 @@
-package com.ivo.qqreader.main;
+package com.ivo.qqreader.ui;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-public class ViewPager extends android.support.v4.view.ViewPager {
+public class NoTouchViewPager extends android.support.v4.view.ViewPager {
 
-    public ViewPager(Context context) {
+    public NoTouchViewPager(Context context) {
         super(context);
     }
 
-    public ViewPager(Context context, AttributeSet attrs) {
+    public NoTouchViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

@@ -20,7 +20,7 @@ public class SplashAct extends AppCompatActivity {
     }
 
     private void navigateToMain() {
-        long delaySeconds = 2;
+        final long delaySeconds = 2;
         Observable.just("o")
                 .delay(delaySeconds, TimeUnit.SECONDS)
                 .subscribe(o -> {

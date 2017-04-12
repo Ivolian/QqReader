@@ -13,7 +13,7 @@ import retrofit2.Retrofit;
 
 
 @Module
-public class AppModule {
+ class AppModule {
 
     private final Context context;
 

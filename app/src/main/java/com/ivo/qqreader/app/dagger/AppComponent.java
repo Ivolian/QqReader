@@ -8,7 +8,7 @@ import com.ivo.qqreader.discover.DiscoverFra;
 import com.ivo.qqreader.discover.info.InfoAdapter;
 import com.ivo.qqreader.discover.info.InfoFra;
 import com.ivo.qqreader.discover.info.InfoItemDecoration;
-import com.ivo.qqreader.main.watcher.BackPressWatcher;
+import com.ivo.qqreader.main.BackPressConsumer;
 import com.ivo.qqreader.sidebar.SidebarAdapter;
 import com.ivo.qqreader.sidebar.SidebarItemDecoration;
 import com.ivo.qqreader.sidebar.SidebarFra;
@@ -21,7 +21,7 @@ import dagger.Component;
 @Component(modules = {AppModule.class})
 public interface AppComponent {
 
-    void  inject(BackPressWatcher o);
+    void  inject(BackPressConsumer o);
     void  inject(SidebarItemDecoration o);
     void  inject(SidebarAdapter o);
     void  inject(SidebarFra o);

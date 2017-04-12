@@ -10,8 +10,7 @@ import android.view.ViewConfiguration;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.main.adapter.MainPagerAdapter;
-import com.ivo.qqreader.main.watcher.BackPressWatcher;
+import com.ivo.qqreader.base.BaseAct;
 import com.ivo.qqreader.navigate.RoutePath;
 import com.ivo.qqreader.sidebar.SidebarFra;
 
@@ -19,31 +18,31 @@ import java.lang.reflect.Field;
 
 import butterknife.BindColor;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageBottomTabLayout;
 import me.majiajie.pagerbottomtabstrip.item.BaseTabItem;
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView;
 import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
-import me.yokeyword.fragmentation.SupportActivity;
 import qiu.niorgai.StatusBarCompat;
 
 @Route(path = RoutePath.MAIN_ACT)
-public class MainAct extends SupportActivity {
+public class MainAct extends BaseAct {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int layoutResId() {
+        return R.layout.act_main;
+    }
+
+    @Override
+    protected void init(Bundle savedInstanceState) {
         StatusBarCompat.translucentStatusBar(this);
-        setContentView(R.layout.act_main);
-        ButterKnife.bind(this);
         initDrawerLayout();
         if (savedInstanceState == null) {
             addSidebarFra();
         }
         initViewPager();
         initMainTab();
-        addBackPressWatcher();
+        addBackPressConsumer();
     }
 
     @BindView(R.id.drawerLayout)
@@ -61,14 +60,12 @@ public class MainAct extends SupportActivity {
     private void changeDrawerSensitivity() throws Exception {
         Field field = drawerLayout.getClass().getDeclaredField("mLeftDragger");
         field.setAccessible(true);
-        ViewDragHelper viewDragHelper = (ViewDragHelper) field.get(drawerLayout);
-
-        field = viewDragHelper.getClass().getDeclaredField("mTouchSlop");
+        ViewDragHelper mLeftDragger = (ViewDragHelper) field.get(drawerLayout);
+        field = mLeftDragger.getClass().getDeclaredField("mTouchSlop");
         field.setAccessible(true);
-
         int touchSlop = ViewConfiguration.get(this).getScaledTouchSlop();
         touchSlop = (int) (touchSlop * (1 / 0.5));
-        field.set(viewDragHelper, touchSlop);
+        field.set(mLeftDragger, touchSlop);
     }
 
     private void addSidebarFra() {
@@ -79,9 +76,8 @@ public class MainAct extends SupportActivity {
     ViewPager viewPager;
 
     private void initViewPager() {
-        MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         viewPager.setOffscreenPageLimit(3);
-        viewPager.setAdapter(mainPagerAdapter);
+        viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
     }
 
     @BindView(R.id.mainTab)
@@ -95,14 +91,17 @@ public class MainAct extends SupportActivity {
                 .addItem(newItem(R.drawable.maintab_category_icon, R.drawable.maintab_category_icon_hover, "发现"))
                 .build();
         navigationController.setupWithViewPager(viewPager);
-        navigationController.setSelect(0);
-        int discoverPosition = 3;
-        navigationController.setHasMessage(discoverPosition, true);
+        setHasMessage(navigationController);
+    }
+
+    private void setHasMessage(NavigationController navigationController) {
+        int pos = 3;
+        navigationController.setHasMessage(pos, true);
         navigationController.addTabItemSelectedListener(new OnTabItemSelectedListener() {
             @Override
             public void onSelected(int i, int i1) {
-                if (i == discoverPosition) {
-                    navigationController.setHasMessage(discoverPosition, false);
+                if (i == pos) {
+                    navigationController.setHasMessage(pos, false);
                 }
             }
 
@@ -127,15 +126,15 @@ public class MainAct extends SupportActivity {
         return normalItemView;
     }
 
-    private BackPressWatcher backPressWatcher;
+    private BackPressConsumer backPressConsumer;
 
-    private void addBackPressWatcher() {
-        backPressWatcher = new BackPressWatcher(drawerLayout);
+    private void addBackPressConsumer() {
+        backPressConsumer = new BackPressConsumer(drawerLayout);
     }
 
     @Override
     public void onBackPressedSupport() {
-        if (!backPressWatcher.onBackPressed()) {
+        if (!backPressConsumer.onBackPressed()) {
             super.onBackPressedSupport();
         }
     }

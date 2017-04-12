@@ -1,4 +1,4 @@
-package com.ivo.qqreader.main.watcher;
+package com.ivo.qqreader.main;
 
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -8,16 +8,16 @@ import com.ivo.qqreader.app.helper.ToastHelper;
 
 import javax.inject.Inject;
 
-public class BackPressWatcher {
+public class BackPressConsumer {
 
     private final DrawerLayout drawerLayout;
 
-    public BackPressWatcher(DrawerLayout drawerLayout) {
+    BackPressConsumer(DrawerLayout drawerLayout) {
         this.drawerLayout = drawerLayout;
         AppComponentProvider.provide().inject(this);
     }
 
-    public boolean onBackPressed() {
+    boolean onBackPressed() {
         return closeDrawer() || showExitPrompt();
     }
 
@@ -37,7 +37,7 @@ public class BackPressWatcher {
 
     private boolean showExitPrompt() {
         final long interval = 2000;
-        String msg = "再按一次退出";
+        final String msg = "再按一次退出";
         if ((System.currentTimeMillis() - lastTime) > interval) {
             toastHelper.error(msg);
             lastTime = System.currentTimeMillis();
