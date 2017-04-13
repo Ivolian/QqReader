@@ -5,13 +5,15 @@ import android.app.Application;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ivo.qqreader.BuildConfig;
 import com.ivo.qqreader.app.dagger.AppComponentProvider;
+import com.ivo.qqreader.recommend.model.DaoMaster;
+import com.ivo.qqreader.recommend.model.DaoSession;
 import com.orhanobut.logger.Logger;
+
+import org.greenrobot.greendao.database.Database;
 
 import me.yokeyword.fragmentation.Fragmentation;
 
-// http://android.reader.qq.com/v6_3_9/nativepage/infostream/list?periods=2017040808&realdata=1&sex=1&case=A
-/// qimei:3910feb22bd16f65
-//channel:10004200
+//http://android.reader.qq.com/v6_3_10/nativepage/book/detail?bid=13713126
 public class App extends Application {
 
     @Override
@@ -26,6 +28,7 @@ public class App extends Application {
         initFragmentation();
         String tag = "QqReader";
         Logger.init(tag);
+        initDb();
     }
 
     private void initARouter() {
@@ -40,6 +43,23 @@ public class App extends Application {
                 .stackViewMode(Fragmentation.BUBBLE)
                 .debug(BuildConfig.DEBUG)
                 .install();
+    }
+
+    private void initDb() {
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "QqReader-db");
+        Database db = helper.getWritableDb();
+        DaoSession daoSession = new DaoMaster(db).newSession();
+
+//        List<Ad> adList = new Gson().fromJson(Delete.de(),
+//                new TypeToken<List<Ad>>() {
+//                }.getType());
+//
+//        daoSession.getAdDao().insertOrReplaceInTx(adList);
+//        for (Ad ad : adList) {
+//            if (ad.extInfo != null)
+//                daoSession.getExtInfoDao().insertOrReplace(ad.extInfo);
+//        }
+//        Logger.e("ss");
     }
 
 }

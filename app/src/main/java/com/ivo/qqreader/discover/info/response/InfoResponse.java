@@ -570,6 +570,7 @@ public class InfoResponse {
              * weight : 0
              */
 
+            private String qurl;
             private String desc;
             private int forcePush;
             private int online;
@@ -581,6 +582,14 @@ public class InfoResponse {
             private int weight;
             private List<?> ex;
             private List<PicsBean> pics;
+
+            public String getQurl() {
+                return qurl;
+            }
+
+            public void setQurl(String qurl) {
+                this.qurl = qurl;
+            }
 
             public String getDesc() {
                 return desc;

@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
 import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hwangjr.rxbus.annotation.Tag;
 import com.ivo.qqreader.R;
 import com.ivo.qqreader.base.BaseFra;
 import com.ivo.qqreader.bookshelf.dagger.BookshelfComponentProvider;
@@ -166,5 +168,9 @@ public class BookshelfFra extends BaseFra {
         bookListScrollWatcher.watch();
     }
 
+    @Subscribe(tags = {@Tag(BusAction.BACK_TO_TOP)})
+    public void backToTop(Object o) {
+        recyclerView.smoothScrollToPosition(0);
+    }
 
 }

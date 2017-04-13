@@ -26,7 +26,7 @@ public class ToastHelper {
     }
 
     public void notSupport(String name) {
-        success("暂不支持" + name);
+        success("不支持" + name);
     }
 
 }

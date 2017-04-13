@@ -2,6 +2,7 @@ package com.ivo.qqreader.discover.dagger;
 
 import com.ivo.qqreader.app.dagger.AppComponent;
 import com.ivo.qqreader.discover.DiscoverFra;
+import com.ivo.qqreader.discover.InfoDetailAct;
 import com.ivo.qqreader.discover.info.InfoAdapter;
 import com.ivo.qqreader.discover.info.InfoFra;
 import com.ivo.qqreader.discover.info.InfoItemDecoration;
@@ -16,5 +17,7 @@ public interface DiscoverComponent {
     void  inject(InfoFra o);
     void  inject(InfoAdapter o);
     void  inject(InfoItemDecoration o);
+
+    void  inject(InfoDetailAct o);
 
 }

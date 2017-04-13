@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'me.tatarka.retrolambda'
-
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     signingConfigs {
@@ -60,6 +60,8 @@ dependencies {
     })
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.f2prateek.dart:dart:2.0.2'
+    provided 'com.f2prateek.dart:dart-processor:2.0.2'
     compile 'com.google.dagger:dagger:2.10'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
     compile 'com.sdsmdg.tastytoast:tastytoast:0.1.1'
@@ -81,4 +83,6 @@ dependencies {
     compile 'com.orhanobut:logger:1.15'
     compile 'com.gelitenight.waveview:waveview:1.0.0'
     compile 'com.hwangjr.rxbus:rxbus:1.0.5'
+    compile 'org.greenrobot:greendao:3.2.2'
+    debugCompile 'im.dino:dbinspector:3.4.1@aar'
 }

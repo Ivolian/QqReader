@@ -9,10 +9,11 @@ import android.view.Gravity;
 import android.view.ViewConfiguration;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.base.BaseAct;
+import com.ivo.qqreader.base.SwipeBackAct;
 import com.ivo.qqreader.bus.BusAction;
 import com.ivo.qqreader.navigate.RoutePath;
 import com.ivo.qqreader.sidebar.SidebarFra;
@@ -29,7 +30,7 @@ import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectedListener;
 import qiu.niorgai.StatusBarCompat;
 
 @Route(path = RoutePath.MAIN_ACT)
-public class MainAct extends BaseAct {
+public class MainAct extends SwipeBackAct {
 
     @Override
     protected int layoutResId() {
@@ -110,6 +111,9 @@ public class MainAct extends BaseAct {
             public void onSelected(int i, int i1) {
                 if (i == pos) {
                     navigationController.setHasMessage(pos, false);
+                }
+                if (i == i1) {
+                    RxBus.get().post(BusAction.BACK_TO_TOP, new Object());
                 }
             }
 

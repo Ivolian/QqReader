@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hwangjr.rxbus.RxBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -13,6 +15,10 @@ import me.yokeyword.fragmentation.SupportFragment;
 public abstract class BaseFra extends SupportFragment {
 
     protected abstract int layoutResId();
+
+    protected boolean useRxBus() {
+        return false;
+    }
 
     private Unbinder unbinder;
 
@@ -22,12 +28,18 @@ public abstract class BaseFra extends SupportFragment {
         View view = inflater.inflate(layoutResId(), container, false);
         unbinder = ButterKnife.bind(this, view);
         init();
+        if (useRxBus()) {
+            RxBus.get().register(this);
+        }
         return view;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (useRxBus()) {
+            RxBus.get().register(this);
+        }
         unbinder.unbind();
     }
 

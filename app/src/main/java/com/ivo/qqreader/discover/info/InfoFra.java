@@ -8,11 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.ivo.qqreader.Key;
 import com.ivo.qqreader.R;
-import com.ivo.qqreader.discover.network.InfoService;
 import com.ivo.qqreader.base.BaseFra;
 import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
 import com.ivo.qqreader.discover.info.response.InfoResponse;
+import com.ivo.qqreader.discover.network.InfoService;
+import com.ivo.qqreader.navigate.RoutePath;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +76,13 @@ public abstract class InfoFra extends BaseFra {
         recyclerView.addItemDecoration(new InfoItemDecoration());
         recyclerView.setAdapter(infoAdapter = new InfoAdapter());
         addLoadMoreListenerIfNeed();
+        infoAdapter.setOnItemClickListener((adapter, view, position) -> {
+            InfoResponse.InfosBean.Info info = infoAdapter.getItem(position);
+            ARouter.getInstance().build(RoutePath.INFO_DETAIL_ACT)
+                    .withString(Key.INFO_TITLE, info.getTitle())
+                    .withString(Key.INFO_URL, info.getQurl())
+                    .navigation();
+        });
     }
 
     private void addLoadMoreListenerIfNeed() {
@@ -137,9 +147,12 @@ public abstract class InfoFra extends BaseFra {
     }
 
     @SuppressWarnings("Convert2streamapi")
+
+//    uniteqqreader://webpage/http://iyuedu.qq.com/common/common/topicV2.html?tid=326490&adId=111027670&alg=9.1.1&itemid=442593
     private List<InfoResponse.InfosBean.Info> transform(InfoResponse infoResponse) {
         List<InfoResponse.InfosBean.Info> infos = new ArrayList<>();
         for (InfoResponse.InfosBean infosBean : infoResponse.getInfos()) {
+            infosBean.getInfo().setQurl(infosBean.getQurl().replace("uniteqqreader://webpage/", ""));
             infos.add(infosBean.getInfo());
         }
         return infos;

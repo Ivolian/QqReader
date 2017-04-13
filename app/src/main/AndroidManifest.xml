@@ -19,9 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".main.MainAct"
-            android:theme="@style/MainAct" />
+        <activity android:name=".main.MainAct" />
+        <activity android:name=".discover.InfoDetailAct" />
     </application>
 
 </manifest>
