@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".main.MainAct" />
         <activity android:name=".discover.info.detail.InfoDetailAct" />
+        <activity android:name=".bookstack.category.detail.BookCategoryDetailAct" />
+
     </application>
 
 </manifest>

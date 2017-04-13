@@ -21,11 +21,10 @@ public class SplashAct extends AppCompatActivity {
 
     private void navigateToMain() {
         final long delaySeconds = 2;
-        Observable.just("o")
-                .delay(delaySeconds, TimeUnit.SECONDS)
-                .subscribe(o -> {
+        Observable.timer(delaySeconds, TimeUnit.SECONDS)
+                .subscribe(a -> {
                     ARouter.getInstance().build(RoutePath.MAIN_ACT).navigation();
-                    finish();
+                    SplashAct.this.finish();
                 });
     }
 

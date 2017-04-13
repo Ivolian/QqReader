@@ -38,7 +38,7 @@ public class InfoDetailAct extends SwipeBackAct {
     @BindView(R.id.tvTitle)
     TextView tvTitle;
 
-    @InjectExtra(Key.INFO_TITLE)
+    @InjectExtra(Key.TITLE)
     String infoTitle;
 
     private void initViews() {

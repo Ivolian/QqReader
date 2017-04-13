@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 public class BookAdapter extends BaseQuickAdapter<Book, BaseViewHolder> {
 
-    BookAdapter() {
+    public BookAdapter() {
         super(R.layout.item_book);
         BookshelfComponentProvider.provide().inject(this);
     }

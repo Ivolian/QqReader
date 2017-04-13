@@ -37,7 +37,7 @@ public class InfoAdapter extends BaseQuickAdapter<InfoResponse.InfosBean.Info, B
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .map(aVoid -> getItem(viewHolder.getAdapterPosition()))
                 .subscribe((InfoResponse.InfosBean.Info info) -> ARouter.getInstance().build(RoutePath.INFO_DETAIL_ACT)
-                        .withString(Key.INFO_TITLE, info.getTitle())
+                        .withString(Key.TITLE, info.getTitle())
                         .withString(Key.INFO_URL, info.getQurl())
                         .navigation());
     }

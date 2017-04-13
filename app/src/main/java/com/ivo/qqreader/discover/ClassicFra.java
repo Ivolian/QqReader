@@ -2,7 +2,6 @@ package com.ivo.qqreader.discover;
 
 import com.ivo.qqreader.discover.info.InfoFra;
 
-
 public class ClassicFra extends InfoFra {
 
     @Override

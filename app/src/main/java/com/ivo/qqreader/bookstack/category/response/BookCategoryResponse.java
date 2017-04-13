@@ -798,7 +798,6 @@ public class BookCategoryResponse {
          * title : 扮猪吃虎
          */
 
-
         private String image;
         private String intro;
         private String qurl;

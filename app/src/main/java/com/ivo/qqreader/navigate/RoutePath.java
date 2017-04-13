@@ -9,4 +9,6 @@ public final class RoutePath {
 
     public static final String INFO_DETAIL_ACT = "/info/detail/act";
 
+    public static final String BOOK_CATEGORY_DETAIL_ACT = "/bookCategory/detail/act";
+
 }
