@@ -85,4 +85,6 @@ dependencies {
     compile 'com.hwangjr.rxbus:rxbus:1.0.5'
     compile 'org.greenrobot:greendao:3.2.2'
     debugCompile 'im.dino:dbinspector:3.4.1@aar'
+    compile 'com.jakewharton.rxbinding:rxbinding:1.0.1'
+    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:1.0.1'
 }

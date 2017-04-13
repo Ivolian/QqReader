@@ -6,6 +6,10 @@ import com.jude.swipbackhelper.SwipeBackHelper;
 
 public abstract class SwipeBackAct extends BaseAct {
 
+    protected boolean isMain() {
+        return false;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -13,6 +17,9 @@ public abstract class SwipeBackAct extends BaseAct {
         SwipeBackHelper.getCurrentPage(this)
                 .setSwipeEdgePercent(0.1f)
                 .setSwipeRelateEnable(true);
+        if (isMain()) {
+            SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false);
+        }
     }
 
     @Override

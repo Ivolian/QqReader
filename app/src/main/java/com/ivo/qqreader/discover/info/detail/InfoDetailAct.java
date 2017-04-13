@@ -1,4 +1,4 @@
-package com.ivo.qqreader.discover;
+package com.ivo.qqreader.discover.info.detail;
 
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -12,11 +12,13 @@ import com.ivo.qqreader.app.helper.ToastHelper;
 import com.ivo.qqreader.base.SwipeBackAct;
 import com.ivo.qqreader.discover.dagger.DiscoverComponentProvider;
 import com.ivo.qqreader.navigate.RoutePath;
+import com.jakewharton.rxbinding.view.RxView;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 @Route(path = RoutePath.INFO_DETAIL_ACT)
 public class InfoDetailAct extends SwipeBackAct {
@@ -26,15 +28,20 @@ public class InfoDetailAct extends SwipeBackAct {
         return R.layout.act_info_detail;
     }
 
+    @Override
+    protected void init(Bundle savedInstanceState) {
+        DiscoverComponentProvider.provide().inject(this);
+        initViews();
+        addListeners();
+    }
+
     @BindView(R.id.tvTitle)
     TextView tvTitle;
 
     @InjectExtra(Key.INFO_TITLE)
     String infoTitle;
 
-    @Override
-    protected void init(Bundle savedInstanceState) {
-        DiscoverComponentProvider.provide().inject(this);
+    private void initViews() {
         tvTitle.setText(infoTitle);
         initWebView();
     }
@@ -52,17 +59,17 @@ public class InfoDetailAct extends SwipeBackAct {
         webView.loadUrl(infoUrl);
     }
 
-    @OnClick(R.id.ivBack)
-    public void backOnClick() {
-        super.onBackPressedSupport();
-    }
-
     @Inject
     ToastHelper toastHelper;
 
-    @OnClick(R.id.ivShare)
-    public void shareOnClick() {
-        toastHelper.notSupport("分享");
+    private void addListeners() {
+        RxView.clicks(findViewById(R.id.ivBack))
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(aVoid -> super.onBackPressedSupport());
+
+        RxView.clicks(findViewById(R.id.ivShare))
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(aVoid -> toastHelper.notSupport("分享"));
     }
 
 }

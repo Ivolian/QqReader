@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.MainAct" />
-        <activity android:name=".discover.InfoDetailAct" />
+        <activity android:name=".discover.info.detail.InfoDetailAct" />
     </application>
 
 </manifest>

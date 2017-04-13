@@ -2,7 +2,7 @@ package com.ivo.qqreader.discover.dagger;
 
 import com.ivo.qqreader.app.dagger.AppComponent;
 import com.ivo.qqreader.discover.DiscoverFra;
-import com.ivo.qqreader.discover.InfoDetailAct;
+import com.ivo.qqreader.discover.info.detail.InfoDetailAct;
 import com.ivo.qqreader.discover.info.InfoAdapter;
 import com.ivo.qqreader.discover.info.InfoFra;
 import com.ivo.qqreader.discover.info.InfoItemDecoration;

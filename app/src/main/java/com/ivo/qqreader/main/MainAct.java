@@ -43,6 +43,11 @@ public class MainAct extends SwipeBackAct {
     }
 
     @Override
+    protected boolean isMain() {
+        return true;
+    }
+
+    @Override
     protected void init(Bundle savedInstanceState) {
         StatusBarCompat.translucentStatusBar(this);
         initDrawerLayout();
